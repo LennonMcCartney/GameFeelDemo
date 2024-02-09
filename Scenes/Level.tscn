@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://boamkotjhu5si"]
+
+[ext_resource type="PackedScene" uid="uid://b4vganvc1e7a" path="res://Scenes/LevelBlockout.tscn" id="1_b6aip"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ch688"]
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8t2l"]
+albedo_color = Color(0.584314, 0.294118, 0.235294, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1u1l6"]
+material = SubResource("StandardMaterial3D_t8t2l")
+size = Vector3(100, 0.5, 100)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3d2n3"]
+sky_top_color = Color(0.537255, 0.364706, 0.631373, 1)
+
+[sub_resource type="Sky" id="Sky_3rkke"]
+sky_material = SubResource("ProceduralSkyMaterial_3d2n3")
+
+[sub_resource type="Environment" id="Environment_rqmpn"]
+background_mode = 2
+sky = SubResource("Sky_3rkke")
+fog_enabled = true
+fog_light_color = Color(0.603922, 0.513726, 0.623529, 1)
+fog_light_energy = 2.0
+fog_sun_scatter = 0.5
+
+[node name="Level" type="Node3D"]
+process_mode = 1
+
+[node name="LevelBlockout" parent="." instance=ExtResource("1_b6aip")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.01, 0)
+
+[node name="StaticBody" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+
+[node name="CollisionShape" type="CollisionShape3D" parent="StaticBody"]
+shape = SubResource("BoxShape3D_ch688")
+
+[node name="MeshInstance" type="MeshInstance3D" parent="StaticBody"]
+mesh = SubResource("BoxMesh_1u1l6")
+
+[node name="DirectionalLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.81624, -0.241036, 0.525027, 0.289399, 0.615956, 0.732698, -0.5, 0.75, -0.433013, 0, 10, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rqmpn")

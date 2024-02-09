@@ -1,0 +1,13 @@
+WorldEnvironment
+MeshInstance3D
+Node
+CanvasLayer
+Button
+VBoxContainer
+CenterContainer
+MarginContainer
+Camera3D
+Node3D
+CollisionShape3D
+CharacterBody3D
+StaticBody3D

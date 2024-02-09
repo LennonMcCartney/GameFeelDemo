@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpu3f8spy1448"]
+
+[ext_resource type="PackedScene" uid="uid://boamkotjhu5si" path="res://Scenes/Level.tscn" id="1_eo46j"]
+[ext_resource type="PackedScene" uid="uid://cxb3gc5wk7mqb" path="res://Scenes/Player.tscn" id="2_uo05b"]
+[ext_resource type="PackedScene" uid="uid://d3xslbkl1p37d" path="res://Scenes/UI.tscn" id="3_oxe1j"]
+
+[node name="Main" type="Node"]
+process_mode = 3
+
+[node name="Level" parent="." instance=ExtResource("1_eo46j")]
+
+[node name="Player" parent="." instance=ExtResource("2_uo05b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("3_oxe1j")]
