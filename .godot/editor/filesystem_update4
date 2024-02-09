@@ -1,13 +1,8 @@
 res://Scenes/Main.tscn
-res://Scenes/UI.tscn
 res://Scenes/Level.tscn
 res://Scenes/Player.tscn
-res://Scripts/Main.gd
-res://Scripts/GameManager.gd
-res://Scripts/UI.gd
-res://Scripts/Player.gd
+res://Scenes/UI.tscn
 res://Scenes/GameManager.tscn
-res://Assets/Resources/raffa_environment2.tres
-res://Assets/Base/rocks/rock_big.tscn
 res://Assets/Base/rocks/rock_small.tscn
 res://Scenes/LevelBlockout.tscn
+res://Scripts/Player.gd

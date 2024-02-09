@@ -14,9 +14,9 @@ height = 1.6
 process_mode = 1
 script = ExtResource("1_6ghh2")
 head_bob_enabled = true
-stationary_head_bob_frequency = 0.0
-stationary_head_bob_amplitude = 0.0
-walk_head_bob_frequency = 1.0
+walk_head_bob_amplitude = 0.03
+sprint_head_bob_frequency = 17.0
+sprint_head_bob_amplitude = 0.08
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)

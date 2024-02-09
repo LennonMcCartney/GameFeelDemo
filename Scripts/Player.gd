@@ -72,24 +72,26 @@ func _physics_process(delta : float):
 		velocity.x = lerp(velocity.x, 0.0, deceleration * delta)
 		velocity.z = lerp(velocity.z, 0.0, deceleration * delta)
 	
-	move_and_slide()
-
-func _process(delta : float):
-	if head_bob_enabled:
+	if head_bob_enabled && is_on_floor():
 		if moving:
 			if sprinting:
 				#head_bob_frequency = lerp(head_bob_frequency, sprint_head_bob_frequency, 5.0 * delta)
-				head_bob_amplitude = sprint_head_bob_amplitude
+				head_bob_frequency = sprint_head_bob_frequency
 				head_bob_amplitude = lerp(head_bob_amplitude, sprint_head_bob_amplitude, 10.0 * delta)
 			else:
 				#head_bob_frequency = lerp(head_bob_frequency, walk_head_bob_frequency, 5.0 * delta)
-				head_bob_amplitude = walk_head_bob_amplitude
+				head_bob_frequency = walk_head_bob_frequency
 				head_bob_amplitude = lerp(head_bob_amplitude, walk_head_bob_amplitude, 10.0 * delta)
 		else:
 			#head_bob_frequency = lerp(head_bob_frequency, stationary_head_bob_frequency, 5.0 * delta)
-			head_bob_amplitude = stationary_head_bob_amplitude
+			head_bob_frequency = stationary_head_bob_frequency
 			head_bob_amplitude = lerp(head_bob_amplitude, stationary_head_bob_amplitude, 10.0 * delta)
 		head_bob_timer += delta
 		camera.position.y = 1.35 + sin(head_bob_timer * head_bob_frequency) * head_bob_amplitude
 		print("head_bob_frequency > ", head_bob_frequency)
 		print("head_bob_amplitude > ", head_bob_amplitude)
+	
+	move_and_slide()
+
+#func _process(delta : float):
+
