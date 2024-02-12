@@ -1,22 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxb3gc5wk7mqb"]
+[gd_scene load_steps=6 format=3 uid="uid://cxb3gc5wk7mqb"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_6ghh2"]
+[ext_resource type="Script" path="res://Scripts/ShadowProjector.gd" id="2_htr7a"]
+[ext_resource type="Texture2D" uid="uid://6e7woru0fgqs" path="res://Textures/DropShadow.png" id="2_jeg5y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f65h8"]
 radius = 0.3
 height = 1.6
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_j5534"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_j7q3v"]
 radius = 0.3
 height = 1.6
 
 [node name="Player" type="CharacterBody3D"]
 process_mode = 1
+collision_layer = 2
 script = ExtResource("1_6ghh2")
-head_bob_enabled = true
-walk_head_bob_amplitude = 0.03
-sprint_head_bob_frequency = 17.0
-sprint_head_bob_amplitude = 0.08
+jump_height = 3.0
+time_to_ascend = 0.35
+time_to_descend = 0.25
+controller_sensitivity = 2.5
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
@@ -24,7 +27,24 @@ shape = SubResource("CapsuleShape3D_f65h8")
 
 [node name="MeshInstance" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-mesh = SubResource("CapsuleMesh_j5534")
+layers = 2
+cast_shadow = 0
+mesh = SubResource("CapsuleMesh_j7q3v")
 
-[node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+spring_length = 3.0
+
+[node name="Camera" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+
+[node name="ShadowProjector" type="RayCast3D" parent="."]
+target_position = Vector3(0, -15, 0)
+script = ExtResource("2_htr7a")
+
+[node name="ShadowDecal" type="Decal" parent="ShadowProjector"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+texture_albedo = ExtResource("2_jeg5y")
+cull_mask = 1048573
