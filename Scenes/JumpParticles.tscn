@@ -12,7 +12,6 @@ size = Vector2(0.3, 0.3)
 [node name="JumpParticles" type="GPUParticles3D"]
 emitting = false
 amount = 5
-lifetime = 0.5
 one_shot = true
 explosiveness = 0.31
 process_material = SubResource("ParticleProcessMaterial_36arm")
