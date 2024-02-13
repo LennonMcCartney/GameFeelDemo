@@ -3,41 +3,39 @@
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_6ghh2"]
 [ext_resource type="Script" path="res://Scripts/ShadowProjector.gd" id="2_htr7a"]
 [ext_resource type="Texture2D" uid="uid://6e7woru0fgqs" path="res://Textures/DropShadow.png" id="2_jeg5y"]
+[ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://Models/sophia/sophia_skin.tscn" id="2_v4a5x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f65h8"]
 radius = 0.3
-height = 1.6
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_j7q3v"]
-radius = 0.3
-height = 1.6
+height = 1.4
 
 [node name="Player" type="CharacterBody3D"]
 process_mode = 1
 collision_layer = 2
 script = ExtResource("1_6ghh2")
-jump_height = 3.0
-time_to_ascend = 0.35
-time_to_descend = 0.25
+auto_sprint = true
+jump_height = 1.5
+jump_time_to_ascend = 0.35
+jump_time_to_descend = 0.25
+stomp_speed = 25.0
+stomp_gravity = 30.0
 controller_sensitivity = 2.5
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 shape = SubResource("CapsuleShape3D_f65h8")
 
-[node name="MeshInstance" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-layers = 2
-cast_shadow = 0
-mesh = SubResource("CapsuleMesh_j7q3v")
+[node name="SophiaSkin" parent="." instance=ExtResource("2_v4a5x")]
 
-[node name="CameraPivot" type="Node3D" parent="."]
+[node name="CameraPivotHorizontal" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 
-[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+[node name="CameraPivotVertical" type="Node3D" parent="CameraPivotHorizontal"]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivotHorizontal/CameraPivotVertical"]
 spring_length = 3.0
 
-[node name="Camera" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+[node name="Camera" type="Camera3D" parent="CameraPivotHorizontal/CameraPivotVertical/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
 [node name="ShadowProjector" type="RayCast3D" parent="."]
@@ -46,5 +44,6 @@ script = ExtResource("2_htr7a")
 
 [node name="ShadowDecal" type="Decal" parent="ShadowProjector"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+size = Vector3(2, 100, 2)
 texture_albedo = ExtResource("2_jeg5y")
 cull_mask = 1048573
