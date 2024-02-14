@@ -69,11 +69,8 @@ func _process(delta):
 	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward")
 	direction = (camera_pivot_horizontal.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		sophia_skin.move()
 		var new_look_at : Vector3 = direction + global_position
 		sophia_skin.global_rotation.y = lerp_angle(sophia_skin.global_rotation.y, atan2(-direction.x, -direction.z), angular_acceleration * delta)
-	else:
-		sophia_skin.idle()
 
 func _physics_process(delta : float):
 	if get_sprinting():
@@ -99,9 +96,11 @@ func _physics_process(delta : float):
 	if direction:
 		velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
 		velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
+		sophia_skin.move()
 	else:
 		velocity.x = lerp(velocity.x, 0.0, deceleration * delta)
 		velocity.z = lerp(velocity.z, 0.0, deceleration * delta)
+		sophia_skin.idle()
 	
 	if not is_on_floor():
 		if stomping:

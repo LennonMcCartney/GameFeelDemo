@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://16iu10wxub40"
-path="res://.godot/imported/sophia.glb-4163a70dfb98164b27fd4d151b9ef66a.scn"
+path="res://.godot/imported/sophia.glb-431fd1c91fb2c3990ccca5bc5a2b927b.scn"
 
 [deps]
 
-source_file="res://models/sophia/model/sophia.glb"
-dest_files=["res://.godot/imported/sophia.glb-4163a70dfb98164b27fd4d151b9ef66a.scn"]
+source_file="res://Models/sophia/model/sophia.glb"
+dest_files=["res://.godot/imported/sophia.glb-431fd1c91fb2c3990ccca5bc5a2b927b.scn"]
 
 [params]
 
@@ -22,6 +22,7 @@ meshes/generate_lods=true
 meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
@@ -10844,4 +10845,5 @@ _subresources={
 }
 }
 }
+gltf/naming_version=0
 gltf/embedded_image_handling=1
