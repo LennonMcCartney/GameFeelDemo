@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpu3f8spy1448"]
+[gd_scene load_steps=6 format=3 uid="uid://cpu3f8spy1448"]
 
 [ext_resource type="PackedScene" uid="uid://boamkotjhu5si" path="res://Scenes/Level.tscn" id="1_eo46j"]
 [ext_resource type="PackedScene" uid="uid://cxb3gc5wk7mqb" path="res://Scenes/Player.tscn" id="2_uo05b"]
+[ext_resource type="Script" path="res://Scripts/JumpParticlesManager.gd" id="3_35idf"]
 [ext_resource type="PackedScene" uid="uid://d3xslbkl1p37d" path="res://Scenes/UI.tscn" id="3_oxe1j"]
+[ext_resource type="PackedScene" uid="uid://cy8g0ua0om1p8" path="res://Scenes/JumpParticles.tscn" id="4_il51x"]
 
 [node name="Main" type="Node"]
 process_mode = 3
@@ -11,6 +13,10 @@ process_mode = 3
 
 [node name="Player" parent="." instance=ExtResource("2_uo05b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+
+[node name="JumpParticlesManager" type="Node3D" parent="."]
+script = ExtResource("3_35idf")
+jump_particles = ExtResource("4_il51x")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

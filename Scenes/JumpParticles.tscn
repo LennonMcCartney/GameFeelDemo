@@ -1,18 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy8g0ua0om1p8"]
+[gd_scene load_steps=4 format=3 uid="uid://cy8g0ua0om1p8"]
+
+[ext_resource type="Script" path="res://Scripts/JumpParticles.gd" id="1_ktklf"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_36arm"]
-emission_shape = 1
-emission_sphere_radius = 0.3
-gravity = Vector3(0, 15, 0)
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, -30, 0)
 scale_min = 0.0
 
-[sub_resource type="QuadMesh" id="QuadMesh_18r6x"]
-size = Vector2(0.3, 0.3)
+[sub_resource type="SphereMesh" id="SphereMesh_sumer"]
+radius = 0.25
+height = 0.5
 
 [node name="JumpParticles" type="GPUParticles3D"]
+cast_shadow = 0
 emitting = false
-amount = 5
+amount = 10
 one_shot = true
 explosiveness = 0.31
 process_material = SubResource("ParticleProcessMaterial_36arm")
-draw_pass_1 = SubResource("QuadMesh_18r6x")
+draw_pass_1 = SubResource("SphereMesh_sumer")
+script = ExtResource("1_ktklf")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true

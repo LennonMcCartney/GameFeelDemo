@@ -19,7 +19,6 @@ func _process(_delta):
 	for shadow_projector : RayCast3D in shadow_projectors:
 		if shadow_projector.is_colliding():
 			var new_position_y : float = shadow_projector.get_collision_point().y
-			print(new_position_y)
 			if new_position_y > position_y:
 				position_y = new_position_y
 	shadow_decal.global_position.y = position_y

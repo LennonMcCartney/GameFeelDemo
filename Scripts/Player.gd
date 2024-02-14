@@ -47,6 +47,8 @@ var aim_input : Vector2 = Vector2()
 
 @onready var sophia_skin : Node3D = $SophiaSkin
 
+@onready var jump_particle_ray_cast : RayCast3D = $JumpParticleRayCast
+
 var direction : Vector3
 
 func _input(event : InputEvent):
@@ -130,6 +132,8 @@ func get_jump() -> bool:
 	if Input.is_action_just_pressed("Jump"):
 		if is_on_floor():
 			jump_counter = 1
+			if jump_particle_ray_cast.is_colliding():
+				GameManager.jump.emit(jump_particle_ray_cast.get_collision_point())
 			return true
 		elif jump_counter <= 1:
 			jump_counter += 1
