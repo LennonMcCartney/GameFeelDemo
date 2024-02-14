@@ -14,7 +14,6 @@ process_mode = 1
 collision_layer = 2
 script = ExtResource("1_6ghh2")
 auto_sprint = true
-sprint_speed = 10.0
 jump_height = 2.5
 jump_time_to_ascend = 0.35
 jump_time_to_descend = 0.25
@@ -39,12 +38,29 @@ spring_length = 3.0
 [node name="Camera" type="Camera3D" parent="CameraPivotHorizontal/CameraPivotVertical/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
-[node name="ShadowProjector" type="RayCast3D" parent="."]
-target_position = Vector3(0, -15, 0)
+[node name="ShadowProjectorManager" type="Node3D" parent="."]
 script = ExtResource("2_htr7a")
 
-[node name="ShadowDecal" type="Decal" parent="ShadowProjector"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-size = Vector3(2, 100, 2)
+[node name="ShadowProjectors" type="Node3D" parent="ShadowProjectorManager"]
+
+[node name="ShadowProjectorLeft" type="RayCast3D" parent="ShadowProjectorManager/ShadowProjectors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.25, 0)
+target_position = Vector3(0, -15, 0)
+
+[node name="ShadowProjectorRight" type="RayCast3D" parent="ShadowProjectorManager/ShadowProjectors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.25, 0)
+target_position = Vector3(0, -15, 0)
+
+[node name="ShadowProjectorFront" type="RayCast3D" parent="ShadowProjectorManager/ShadowProjectors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.3)
+target_position = Vector3(0, -15, 0)
+
+[node name="ShadowProjectorBack" type="RayCast3D" parent="ShadowProjectorManager/ShadowProjectors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.6)
+target_position = Vector3(0, -15, 0)
+
+[node name="ShadowDecal" type="Decal" parent="ShadowProjectorManager"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+size = Vector3(2, 5, 2)
 texture_albedo = ExtResource("2_jeg5y")
 cull_mask = 1048573

@@ -3,7 +3,7 @@
 [ext_resource type="Material" uid="uid://b1j826thlvcx7" path="res://Assets/Materials/mat_temple.tres" id="2_8lm0s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o3js1"]
-size = Vector3(1.61, 0.79, 1.61)
+size = Vector3(1.5, 0.79, 1.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r10ia"]
 resource_name = "STONE"
