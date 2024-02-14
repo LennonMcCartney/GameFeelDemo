@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://boamkotjhu5si"]
+[gd_scene load_steps=12 format=3 uid="uid://boamkotjhu5si"]
 
 [ext_resource type="PackedScene" uid="uid://b4vganvc1e7a" path="res://Scenes/LevelBlockout.tscn" id="1_b6aip"]
 [ext_resource type="PackedScene" uid="uid://bmkr6g26ix3ow" path="res://Assets/Base/rocks/rock_big.tscn" id="2_ib5h0"]
 [ext_resource type="Texture2D" uid="uid://dlri81vhxehvf" path="res://Textures/Prototype/Light/texture_04.png" id="2_kmoup"]
 [ext_resource type="PackedScene" uid="uid://df44qbjskigqv" path="res://Assets/Base/debris/temple_debris_1.tscn" id="4_6hekj"]
+[ext_resource type="PackedScene" uid="uid://dc2kquulamku3" path="res://Assets/Base/temple_pillars/templearc_bottom.tscn" id="5_equpl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ch688"]
 size = Vector3(100, 0.5, 100)
@@ -67,3 +68,6 @@ transform = Transform3D(-0.937269, -0.240841, -0.252037, -0.264942, 0.962004, 0.
 
 [node name="temple_debris_1" parent="." instance=ExtResource("4_6hekj")]
 transform = Transform3D(0.612576, 0, -0.790412, 0, 1, 0, 0.790412, 0, 0.612576, -5.18596, 1.90116, 11.1435)
+
+[node name="templearc_bottom" parent="." instance=ExtResource("5_equpl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.545, 0.4, 6.677)
