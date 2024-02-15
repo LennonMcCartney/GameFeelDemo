@@ -1,10 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpu3f8spy1448"]
+[gd_scene load_steps=9 format=3 uid="uid://cpu3f8spy1448"]
 
 [ext_resource type="PackedScene" uid="uid://boamkotjhu5si" path="res://Scenes/Level.tscn" id="1_eo46j"]
 [ext_resource type="PackedScene" uid="uid://cxb3gc5wk7mqb" path="res://Scenes/Player.tscn" id="2_uo05b"]
 [ext_resource type="Script" path="res://Scripts/JumpParticlesManager.gd" id="3_35idf"]
 [ext_resource type="PackedScene" uid="uid://d3xslbkl1p37d" path="res://Scenes/UI.tscn" id="3_oxe1j"]
-[ext_resource type="PackedScene" uid="uid://cy8g0ua0om1p8" path="res://Scenes/JumpParticles.tscn" id="4_il51x"]
+[ext_resource type="PackedScene" uid="uid://cy8g0ua0om1p8" path="res://Scenes/Particles/JumpParticles.tscn" id="4_il51x"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cgqnp"]
+sky_top_color = Color(0.537255, 0.364706, 0.631373, 1)
+
+[sub_resource type="Sky" id="Sky_3rkke"]
+sky_material = SubResource("ProceduralSkyMaterial_cgqnp")
+
+[sub_resource type="Environment" id="Environment_xdsvk"]
+background_mode = 2
+sky = SubResource("Sky_3rkke")
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+fog_light_color = Color(0.603922, 0.513726, 0.623529, 1)
+fog_light_energy = 2.0
+fog_sun_scatter = 0.5
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.807843, 0.682353, 0.772549, 1)
 
 [node name="Main" type="Node"]
 process_mode = 3
@@ -12,11 +31,14 @@ process_mode = 3
 [node name="Level" parent="." instance=ExtResource("1_eo46j")]
 
 [node name="Player" parent="." instance=ExtResource("2_uo05b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.4782, 0, 0.160981)
 
 [node name="JumpParticlesManager" type="Node3D" parent="."]
 script = ExtResource("3_35idf")
 jump_particles = ExtResource("4_il51x")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xdsvk")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
