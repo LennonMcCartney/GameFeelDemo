@@ -6,7 +6,7 @@ extends Node3D
 
 var run_tilt = 0.0 : set = _set_run_tilt
 
-@export var blink = true : set = set_blink
+var blink = true : set = set_blink
 @onready var blink_timer = %BlinkTimer
 @onready var closed_eyes_timer = %ClosedEyesTimer
 @onready var eye_mat = $sophia/rig/Skeleton3D/Sophia.get("surface_material_override/2")
@@ -21,6 +21,8 @@ func _ready():
 		eye_mat.set("uv1_offset", Vector3.ZERO)
 		blink_timer.start(randf_range(1.0, 4.0))
 		)
+	
+	blink = false
 
 func set_blink(state : bool):
 	if blink == state: return

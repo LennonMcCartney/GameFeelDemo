@@ -2,21 +2,16 @@
 
 [ext_resource type="Script" path="res://Scripts/JumpParticles.gd" id="1_ktklf"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_36arm"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5vetd"]
 direction = Vector3(0, 1, 0)
-spread = 3.0
+spread = 0.0
 initial_velocity_min = 10.0
 initial_velocity_max = 10.0
-gravity = Vector3(0, -50, 0)
-scale_min = 0.3
-collision_mode = 1
-collision_friction = 0.0
-collision_bounce = 1.0
-collision_use_scale = true
+gravity = Vector3(0, -20, 0)
 
-[sub_resource type="SphereMesh" id="SphereMesh_sumer"]
-radius = 0.25
-height = 0.5
+[sub_resource type="SphereMesh" id="SphereMesh_123gc"]
+radius = 0.3
+height = 0.6
 
 [node name="JumpParticles" type="GPUParticles3D"]
 layers = 2
@@ -24,9 +19,8 @@ cast_shadow = 0
 emitting = false
 amount = 3
 one_shot = true
-explosiveness = 0.31
-process_material = SubResource("ParticleProcessMaterial_36arm")
-draw_pass_1 = SubResource("SphereMesh_sumer")
+process_material = SubResource("ParticleProcessMaterial_5vetd")
+draw_pass_1 = SubResource("SphereMesh_123gc")
 script = ExtResource("1_ktklf")
 
 [node name="Timer" type="Timer" parent="."]

@@ -42,6 +42,9 @@ shape = SubResource("BoxShape3D_ch688")
 [node name="MeshInstance" type="MeshInstance3D" parent="StaticBody"]
 mesh = SubResource("BoxMesh_1u1l6")
 
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="StaticBody"]
+size = Vector3(100, 0.5, 100)
+
 [node name="DirectionalLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.81624, -0.241036, 0.525027, 0.289399, 0.615956, 0.732698, -0.5, 0.75, -0.433013, 0, 10, 0)
 shadow_enabled = true
@@ -69,6 +72,15 @@ transform = Transform3D(0.992988, 0, -0.118213, 0, 1, 0, 0.118213, 0, 0.992988, 
 
 [node name="templearc_bottom8" parent="." instance=ExtResource("5_equpl")]
 transform = Transform3D(0.992988, 0, -0.118213, 0, 1, 0, 0.118213, 0, 0.992988, -3.67497, 10.1416, -26.9735)
+
+[node name="templearc_bottom9" parent="." instance=ExtResource("5_equpl")]
+transform = Transform3D(0.974134, 0, 0.225972, 0, 1, 0, -0.225972, 0, 0.974134, -20.8514, 10.1416, -26.3445)
+
+[node name="templearc_bottom10" parent="." instance=ExtResource("5_equpl")]
+transform = Transform3D(0.835222, 0, 0.549913, 0, 1, 0, -0.549913, 0, 0.835222, -26.5238, 10.1416, -23.9812)
+
+[node name="templearc_bottom11" parent="." instance=ExtResource("5_equpl")]
+transform = Transform3D(0.417486, 0, 0.908683, 0, 1, 0, -0.908683, 0, 0.417486, -30.7995, 10.1416, -17.5304)
 
 [node name="rock_big" parent="." instance=ExtResource("2_ib5h0")]
 transform = Transform3D(0.933485, 0.273036, -0.232502, -0.264942, 0.962004, 0.0659886, 0.241685, 0, 0.970355, 21.3961, 0, -7.46432)

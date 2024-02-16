@@ -65,13 +65,12 @@ func _process(delta):
 	
 	camera_pivot_horizontal.rotate_y(-aim_input.x * delta * look_sensitivity)
 	camera_pivot_vertical.rotate_x(-aim_input.y * delta * look_sensitivity)
-	camera_pivot_vertical.rotation.x = clampf(camera_pivot_vertical.rotation.x, deg_to_rad(-70.0), deg_to_rad(15.0))
+	camera_pivot_vertical.rotation.x = clampf(camera_pivot_vertical.rotation.x, deg_to_rad(-70.0), deg_to_rad(10.0))
 	aim_input = Vector2()
 	
 	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward")
 	direction = (camera_pivot_horizontal.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		var new_look_at : Vector3 = direction + global_position
 		sophia_skin.global_rotation.y = lerp_angle(sophia_skin.global_rotation.y, atan2(-direction.x, -direction.z), angular_acceleration * delta)
 
 func _physics_process(delta : float):
