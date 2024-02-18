@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cxb3gc5wk7mqb" path="res://Scenes/Player.tscn" id="2_uo05b"]
 [ext_resource type="Script" path="res://Scripts/JumpParticlesManager.gd" id="3_35idf"]
 [ext_resource type="PackedScene" uid="uid://d3xslbkl1p37d" path="res://Scenes/UI.tscn" id="3_oxe1j"]
-[ext_resource type="PackedScene" uid="uid://cy8g0ua0om1p8" path="res://Scenes/Particles/JumpParticles.tscn" id="4_il51x"]
+[ext_resource type="Script" path="res://Scripts/SprintParticlesManager.gd" id="4_4ejka"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cgqnp"]
 sky_top_color = Color(0.537255, 0.364706, 0.631373, 1)
@@ -35,7 +35,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.4782, 0, 0.160981)
 
 [node name="JumpParticlesManager" type="Node3D" parent="."]
 script = ExtResource("3_35idf")
-jump_particles = ExtResource("4_il51x")
+
+[node name="SprintParticlesManager" type="Node3D" parent="."]
+script = ExtResource("4_4ejka")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xdsvk")

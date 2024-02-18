@@ -3,6 +3,9 @@ extends CharacterBody3D
 @export_category("Movement")
 @export var auto_sprint : bool = false
 
+@export var movement_particles_spawn_interval : float = 0.1
+var movement_particles_spawn_timer : float = 0.0
+
 @export_group("Speed")
 var speed : float
 @export var walk_speed : float = 3.0
@@ -32,6 +35,7 @@ var stomping : bool = false
 @export var acceleration : float = 15.0
 @export var deceleration : float = 10.0
 
+@export_category("Input")
 @export_group("Look Sensitivity")
 var look_sensitivity : float
 @export var mouse_sensitivity : float = 0.5
@@ -98,6 +102,11 @@ func _physics_process(delta : float):
 		velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
 		velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
 		sophia_skin.move()
+		if is_on_floor():
+			movement_particles_spawn_timer += delta
+			if movement_particles_spawn_timer > movement_particles_spawn_interval:
+				GameManager.sprint.emit(global_position + Vector3(0.0, 0.15, 0.0), velocity.length())
+				movement_particles_spawn_timer = 0.0
 	else:
 		velocity.x = lerp(velocity.x, 0.0, deceleration * delta)
 		velocity.z = lerp(velocity.z, 0.0, deceleration * delta)
@@ -128,13 +137,15 @@ func get_sprinting() -> float:
 	return auto_sprint or Input.is_action_pressed("Sprint")
 
 func get_jump() -> bool:
-	if Input.is_action_just_pressed("Jump"):
-		if is_on_floor():
+	if is_on_floor():
+		if Input.is_action_pressed("Jump"):
 			jump_counter = 1
 			if jump_particle_ray_cast.is_colliding():
 				GameManager.jump.emit(jump_particle_ray_cast.get_collision_point())
 			return true
-		elif jump_counter <= 1:
-			jump_counter += 1
-			return true
+	else:
+		if Input.is_action_just_pressed("Jump"):
+			if jump_counter <= 1:
+				jump_counter += 1
+				return true
 	return false

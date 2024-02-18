@@ -23,7 +23,7 @@ jump_time_to_ascend = 0.35
 jump_time_to_descend = 0.25
 stomp_speed = 25.0
 stomp_gravity = 30.0
-angular_acceleration = 10.0
+controller_sensitivity = 3.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
