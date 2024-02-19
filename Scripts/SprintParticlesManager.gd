@@ -11,4 +11,9 @@ func _ready():
 
 func spawn_sprint_particles(spawn_position : Vector3, speed : float):
 	sprint_particles.global_position = spawn_position
-	sprint_particles.emitting = true
+	if speed > 7.0:
+		print("emitting speed > ", speed)
+		sprint_particles.emitting = true
+	else:
+		print("not emitting speed > ", speed)
+		sprint_particles.emitting = false

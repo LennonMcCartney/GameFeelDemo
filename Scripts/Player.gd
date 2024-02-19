@@ -102,11 +102,6 @@ func _physics_process(delta : float):
 		velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
 		velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
 		sophia_skin.move()
-		if is_on_floor():
-			movement_particles_spawn_timer += delta
-			if movement_particles_spawn_timer > movement_particles_spawn_interval:
-				GameManager.sprint.emit(global_position + Vector3(0.0, 0.15, 0.0), velocity.length())
-				movement_particles_spawn_timer = 0.0
 	else:
 		velocity.x = lerp(velocity.x, 0.0, deceleration * delta)
 		velocity.z = lerp(velocity.z, 0.0, deceleration * delta)
@@ -121,6 +116,11 @@ func _physics_process(delta : float):
 			sophia_skin.jump()
 	else:
 		stomping = false
+		#movement_particles_spawn_timer += delta
+		#if movement_particles_spawn_timer > movement_particles_spawn_interval:
+		var horizontal_velocity : Vector2 = Vector2(velocity.x, velocity.z)
+		GameManager.sprint.emit(global_position + Vector3(0.0, 0.15, 0.0), horizontal_velocity.length())
+			#movement_particles_spawn_timer = 0.0
 	
 	move_and_slide()
 

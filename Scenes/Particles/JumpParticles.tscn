@@ -1,15 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://cy8g0ua0om1p8"]
+[gd_scene load_steps=6 format=3 uid="uid://cy8g0ua0om1p8"]
+
+[sub_resource type="Curve" id="Curve_kesqa"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3gf46"]
+curve = SubResource("Curve_kesqa")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5vetd"]
 direction = Vector3(0, 1, 0)
 spread = 5.0
-initial_velocity_min = 10.0
-initial_velocity_max = 10.0
-damping_min = 20.0
-damping_max = 45.0
-scale_min = 0.3
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+damping_min = 5.0
+damping_max = 10.0
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_3gf46")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6pbhs"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_123gc"]
+material = SubResource("StandardMaterial3D_6pbhs")
 radius = 0.2
 height = 0.4
 
@@ -22,7 +33,3 @@ one_shot = true
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_5vetd")
 draw_pass_1 = SubResource("SphereMesh_123gc")
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-autostart = true

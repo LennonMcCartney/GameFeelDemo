@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpu3f8spy1448"]
+[gd_scene load_steps=10 format=3 uid="uid://cpu3f8spy1448"]
 
 [ext_resource type="PackedScene" uid="uid://boamkotjhu5si" path="res://Scenes/Level.tscn" id="1_eo46j"]
 [ext_resource type="PackedScene" uid="uid://cxb3gc5wk7mqb" path="res://Scenes/Player.tscn" id="2_uo05b"]
 [ext_resource type="Script" path="res://Scripts/JumpParticlesManager.gd" id="3_35idf"]
 [ext_resource type="PackedScene" uid="uid://d3xslbkl1p37d" path="res://Scenes/UI.tscn" id="3_oxe1j"]
 [ext_resource type="Script" path="res://Scripts/SprintParticlesManager.gd" id="4_4ejka"]
+[ext_resource type="Script" path="res://Scripts/FpsLabel.gd" id="6_5hj3n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cgqnp"]
 sky_top_color = Color(0.537255, 0.364706, 0.631373, 1)
@@ -42,6 +43,10 @@ script = ExtResource("4_4ejka")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xdsvk")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" parent="." instance=ExtResource("3_oxe1j")]
 
-[node name="UI" parent="CanvasLayer" instance=ExtResource("3_oxe1j")]
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "_ FPS"
+script = ExtResource("6_5hj3n")
