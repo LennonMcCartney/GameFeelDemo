@@ -22,7 +22,7 @@ func _ready():
 		blink_timer.start(randf_range(1.0, 4.0))
 		)
 	
-	blink = false
+	#blink = false
 
 func set_blink(state : bool):
 	if blink == state: return

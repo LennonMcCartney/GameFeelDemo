@@ -55,6 +55,9 @@ var aim_input : Vector2 = Vector2()
 
 var direction : Vector3
 
+func _ready():
+	sophia_skin.idle()
+
 func _input(event : InputEvent):
 	if event is InputEventMouseMotion:
 		aim_input = event.relative

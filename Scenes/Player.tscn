@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://Models/sophia/sophia_skin.tscn" id="2_v4a5x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f65h8"]
-radius = 0.45
+radius = 0.35
 height = 1.4
 
 [node name="Player" type="CharacterBody3D"]
@@ -17,14 +17,15 @@ auto_sprint = true
 movement_particles_spawn_interval = 0.001
 walk_speed = 6.5
 walk_speed_when_jumping = 5.0
-sprint_speed = 8.5
-sprint_speed_when_jumping = 6.5
+sprint_speed = 10.0
+sprint_speed_when_jumping = 7.0
 jump_height = 2.5
 jump_time_to_ascend = 0.35
 jump_time_to_descend = 0.25
 stomp_speed = 25.0
 stomp_gravity = 30.0
 acceleration = 3.0
+controller_sensitivity = 2.5
 angular_acceleration = 5.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
