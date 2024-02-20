@@ -56,6 +56,8 @@ var aim_input : Vector2 = Vector2()
 
 @onready var jump_particle_ray_cast : RayCast3D = $JumpParticleRayCast
 
+@onready var audio_stream_player : AudioStreamPlayer3D = $AudioStreamPlayer
+
 var direction : Vector3
 
 func _ready():
@@ -99,6 +101,7 @@ func _physics_process(delta : float):
 	
 	if get_jump():
 		velocity.y = jump_speed
+		audio_stream_player.play()
 	
 	if Input.is_action_just_pressed("Stomp"):
 		velocity.y = -stomp_speed
