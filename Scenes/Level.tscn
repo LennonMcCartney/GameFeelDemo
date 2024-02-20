@@ -50,37 +50,40 @@ transform = Transform3D(-0.81624, -0.241036, 0.525027, 0.289399, 0.615956, 0.732
 shadow_enabled = true
 
 [node name="templearc_bottom" parent="." instance=ExtResource("5_equpl")]
-transform = Transform3D(0.274731, 0, -0.961521, 0, 1, 0, 0.961521, 0, 0.274731, 27.9446, 0.400004, -15.9566)
+transform = Transform3D(0.46941, 0, -0.882981, 0, 1, 0, 0.882981, 0, 0.46941, 27.9446, 0.400004, -15.9566)
 
 [node name="templearc_bottom2" parent="." instance=ExtResource("5_equpl")]
-transform = Transform3D(0.565197, 0, -0.824956, 0, 1, 0, 0.824956, 0, 0.565197, 25.3766, 2.27362, -19.3981)
+transform = Transform3D(0.643228, 0, -0.765674, 0, 1, 0, 0.765674, 0, 0.643228, 25.0189, 2.27362, -19.5364)
 
 [node name="templearc_bottom3" parent="." instance=ExtResource("5_equpl")]
-transform = Transform3D(0.804583, 0, -0.59384, 0, 1, 0, 0.59384, 0, 0.804583, 21.9089, 4.21798, -22.0636)
+transform = Transform3D(0.804583, 0, -0.59384, 0, 1, 0, 0.59384, 0, 0.804583, 21.3671, 4.21798, -22.2546)
 
 [node name="templearc_bottom4" parent="." instance=ExtResource("5_equpl")]
-transform = Transform3D(-0.254197, 0, -0.967152, 0, 1, 0, 0.967152, 0, -0.254197, 17.8201, 6.26139, -23.1751)
+transform = Transform3D(-0.397068, 0, -0.917789, 0, 1, 0, 0.917789, 0, -0.397068, 17.5589, 6.26139, -24.1216)
 
 [node name="templearc_bottom5" parent="." instance=ExtResource("5_equpl")]
-transform = Transform3D(0.877741, 0, -0.479136, 0, 1, 0, 0.479136, 0, 0.877741, 14.0695, 7.88453, -25.569)
+transform = Transform3D(0.926055, 0, -0.377388, 0, 1, 0, 0.377388, 0, 0.926055, 13.4042, 7.88453, -25.7431)
 
 [node name="templearc_bottom6" parent="." instance=ExtResource("5_equpl")]
-transform = Transform3D(0.992988, 0, -0.118213, 0, 1, 0, 0.118213, 0, 0.992988, 9.46724, 8.22108, -27.3429)
+transform = Transform3D(0.967502, 0, -0.252863, 0, 1, 0, 0.252863, 0, 0.967502, 8.41682, 8.22108, -27.343)
 
 [node name="templearc_bottom7" parent="." instance=ExtResource("5_equpl")]
-transform = Transform3D(0.992988, 0, -0.118213, 0, 1, 0, 0.118213, 0, 0.992988, 4.39698, 8.7556, -27.0363)
+transform = Transform3D(0.992988, 0, -0.118213, 0, 1, 0, 0.118213, 0, 0.992988, 2.308, 8.7556, -27.4098)
 
 [node name="templearc_bottom8" parent="." instance=ExtResource("5_equpl")]
-transform = Transform3D(0.992988, 0, -0.118213, 0, 1, 0, 0.118213, 0, 0.992988, -3.67497, 10.1416, -26.9735)
+transform = Transform3D(0.98563, 0, 0.16892, 0, 1, 0, -0.16892, 0, 0.98563, -5.58221, 10.1416, -25.5899)
 
 [node name="templearc_bottom9" parent="." instance=ExtResource("5_equpl")]
-transform = Transform3D(0.974134, 0, 0.225972, 0, 1, 0, -0.225972, 0, 0.974134, -20.8514, 10.1416, -26.3445)
+transform = Transform3D(0.868994, 0, 0.494822, 0, 1, 0, -0.494822, 0, 0.868994, -26.1371, 10.1416, -15.5439)
 
 [node name="templearc_bottom10" parent="." instance=ExtResource("5_equpl")]
-transform = Transform3D(0.835222, 0, 0.549913, 0, 1, 0, -0.549913, 0, 0.835222, -26.5238, 10.1416, -23.9812)
+transform = Transform3D(0.584291, 0, 0.811544, 0, 1, 0, -0.811544, 0, 0.584291, -31.3057, 10.1416, -7.62939)
 
 [node name="templearc_bottom11" parent="." instance=ExtResource("5_equpl")]
-transform = Transform3D(0.417486, 0, 0.908683, 0, 1, 0, -0.908683, 0, 0.417486, -30.7995, 10.1416, -17.5304)
+transform = Transform3D(0.0660993, 0, 0.997813, 0, 1, 0, -0.997813, 0, 0.0660993, -33.8925, 10.1416, 0.00739765)
+
+[node name="templearc_bottom12" parent="." instance=ExtResource("5_equpl")]
+transform = Transform3D(-0.298292, 0, 0.954474, 0, 1, 0, -0.954474, 0, -0.298292, -32.6125, 10.1416, 8.47284)
 
 [node name="rock_big" parent="." instance=ExtResource("2_ib5h0")]
 transform = Transform3D(0.933485, 0.273036, -0.232502, -0.264942, 0.962004, 0.0659886, 0.241685, 0, 0.970355, 21.3961, 0, -7.46432)
@@ -161,7 +164,7 @@ transform = Transform3D(-0.284095, 0, -1.50339, 0, 1.53, 0, 1.50339, 0, -0.28409
 transform = Transform3D(-0.00108543, 0, 1.635, 0, 1.635, 0, -1.635, 0, -0.00108543, -4.37181, 9.53587, 40.729)
 
 [node name="temple_tiles_normal_2" parent="." instance=ExtResource("7_00y7v")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -13.1446, 10.7795, -26.0615)
+transform = Transform3D(1.86334, 0, 0.7266, 0, 2, 0, -0.7266, 0, 1.86334, -16.8275, 10.7795, -20.9558)
 
 [node name="temple_debris_1" parent="." instance=ExtResource("4_6hekj")]
 transform = Transform3D(0.746116, 0, 0.665817, 0, 1, 0, -0.665817, 0, 0.746116, -27.8463, 1.90116, 28.5422)

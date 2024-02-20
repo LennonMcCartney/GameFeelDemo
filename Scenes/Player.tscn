@@ -16,16 +16,16 @@ script = ExtResource("1_6ghh2")
 auto_sprint = true
 walk_speed = 6.5
 walk_speed_when_jumping = 5.0
-sprint_speed = 10.0
+sprint_speed = 11.0
 sprint_speed_when_jumping = 7.0
 jump_height = 2.5
 jump_time_to_ascend = 0.35
 jump_time_to_descend = 0.25
 stomp_speed = 25.0
 stomp_gravity = 30.0
-acceleration = 3.0
+acceleration = 5.0
 controller_sensitivity = 2.5
-angular_acceleration = 5.0
+angular_acceleration = 10.0
 sprint_particles_enabled = true
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
@@ -41,6 +41,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="CameraPivotHorizontal/CameraPivotVertical"]
 spring_length = 3.0
+margin = 0.35
 
 [node name="Camera" type="Camera3D" parent="CameraPivotHorizontal/CameraPivotVertical/SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)

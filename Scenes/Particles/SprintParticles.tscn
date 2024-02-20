@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfl6s3t4xd3e0"]
+[gd_scene load_steps=7 format=3 uid="uid://cfl6s3t4xd3e0"]
+
+[ext_resource type="Script" path="res://Scripts/SprintParticlesManager.gd" id="1_eoxjc"]
 
 [sub_resource type="Curve" id="Curve_1dwhi"]
-_data = [Vector2(0, 0.302476), 0.0, 0.0, 0, 0, Vector2(0.248503, 1), 0.0, 0.0, 0, 0, Vector2(0.547904, 1), 0.0, 0.0, 0, 0, Vector2(0.949102, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.302476), 0.0, 0.0, 0, 0, Vector2(0.347305, 1), 0.0, 0.0, 0, 0, Vector2(0.700599, 1), 0.0, 0.0, 0, 0, Vector2(0.949102, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_p0oi3"]
@@ -19,13 +21,14 @@ scale_curve = SubResource("CurveTexture_p0oi3")
 
 [sub_resource type="SphereMesh" id="SphereMesh_d4q2u"]
 material = SubResource("StandardMaterial3D_jyrat")
-radius = 0.35
-height = 0.7
+radius = 0.3
+height = 0.6
 
 [node name="SprintParticles" type="GPUParticles3D"]
 layers = 2
 emitting = false
 amount = 120
-lifetime = 0.9
+lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_gjfcw")
 draw_pass_1 = SubResource("SphereMesh_d4q2u")
+script = ExtResource("1_eoxjc")

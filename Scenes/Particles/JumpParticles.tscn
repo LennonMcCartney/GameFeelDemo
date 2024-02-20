@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy8g0ua0om1p8"]
+[gd_scene load_steps=7 format=3 uid="uid://cy8g0ua0om1p8"]
+
+[ext_resource type="Script" path="res://Scripts/JumpParticlesManager.gd" id="1_yiemw"]
 
 [sub_resource type="Curve" id="Curve_kesqa"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -33,3 +35,4 @@ one_shot = true
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_5vetd")
 draw_pass_1 = SubResource("SphereMesh_123gc")
+script = ExtResource("1_yiemw")

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://models/sophia/sophia_skin.gd" id="1_obcib"]
 [ext_resource type="Material" uid="uid://dye01l0ct4fby" path="res://Models/sophia/model/materials/eye_mat_override.tres" id="4_mms51"]
 
-[sub_resource type="Animation" id="Animation_nuev0"]
+[sub_resource type="Animation" id="Animation_b6ppj"]
 resource_name = "EdgeGrab"
 length = 1.06667
 loop_mode = 1
@@ -737,7 +737,7 @@ tracks/103/interp = 1
 tracks/103/loop_wrap = true
 tracks/103/keys = PackedFloat32Array(0, 1, -0.579758, -0.382616, -0.396489, 0.600235)
 
-[sub_resource type="Animation" id="Animation_mvf23"]
+[sub_resource type="Animation" id="Animation_onpgu"]
 resource_name = "Fall"
 length = 0.533333
 loop_mode = 1
@@ -1470,7 +1470,7 @@ tracks/103/interp = 1
 tracks/103/loop_wrap = true
 tracks/103/keys = PackedFloat32Array(0, 1, -0.579758, -0.382616, -0.396489, 0.600235)
 
-[sub_resource type="Animation" id="Animation_rfpjh"]
+[sub_resource type="Animation" id="Animation_hmnht"]
 resource_name = "Idle"
 length = 2.0
 loop_mode = 1
@@ -2203,7 +2203,7 @@ tracks/103/interp = 1
 tracks/103/loop_wrap = true
 tracks/103/keys = PackedFloat32Array(0, 1, -0.579758, -0.382616, -0.396489, 0.600235)
 
-[sub_resource type="Animation" id="Animation_2lm1e"]
+[sub_resource type="Animation" id="Animation_yfep4"]
 resource_name = "Jump"
 length = 0.533333
 loop_mode = 1
@@ -2936,7 +2936,7 @@ tracks/103/interp = 1
 tracks/103/loop_wrap = true
 tracks/103/keys = PackedFloat32Array(0, 1, -0.579758, -0.382616, -0.396489, 0.600235)
 
-[sub_resource type="Animation" id="Animation_38ypo"]
+[sub_resource type="Animation" id="Animation_j3jpp"]
 resource_name = "Run"
 length = 0.6
 loop_mode = 1
@@ -3669,7 +3669,7 @@ tracks/103/interp = 1
 tracks/103/loop_wrap = true
 tracks/103/keys = PackedFloat32Array(0, 1, -0.579758, -0.382616, -0.396489, 0.600235)
 
-[sub_resource type="Animation" id="Animation_dcdco"]
+[sub_resource type="Animation" id="Animation_x8gdc"]
 resource_name = "RunTiltL"
 length = 0.0333333
 tracks/0/type = "position_3d"
@@ -4401,7 +4401,7 @@ tracks/103/interp = 1
 tracks/103/loop_wrap = true
 tracks/103/keys = PackedFloat32Array(0, 1, -0.579758, -0.382616, -0.396489, 0.600235)
 
-[sub_resource type="Animation" id="Animation_xom5d"]
+[sub_resource type="Animation" id="Animation_6xbse"]
 resource_name = "RunTiltR"
 length = 0.0333333
 tracks/0/type = "position_3d"
@@ -5133,7 +5133,7 @@ tracks/103/interp = 1
 tracks/103/loop_wrap = true
 tracks/103/keys = PackedFloat32Array(0, 1, -0.579758, -0.382616, -0.396489, 0.600235)
 
-[sub_resource type="Animation" id="Animation_webso"]
+[sub_resource type="Animation" id="Animation_qlnvf"]
 resource_name = "WallSlide"
 length = 0.533333
 loop_mode = 1
@@ -5866,16 +5866,16 @@ tracks/103/interp = 1
 tracks/103/loop_wrap = true
 tracks/103/keys = PackedFloat32Array(0, 1, -0.0898415, -0.760331, -0.524915, 0.371872)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_mrj8a"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_73vbp"]
 _data = {
-"EdgeGrab": SubResource("Animation_nuev0"),
-"Fall": SubResource("Animation_mvf23"),
-"Idle": SubResource("Animation_rfpjh"),
-"Jump": SubResource("Animation_2lm1e"),
-"Run": SubResource("Animation_38ypo"),
-"RunTiltL": SubResource("Animation_dcdco"),
-"RunTiltR": SubResource("Animation_xom5d"),
-"WallSlide": SubResource("Animation_webso")
+"EdgeGrab": SubResource("Animation_b6ppj"),
+"Fall": SubResource("Animation_onpgu"),
+"Idle": SubResource("Animation_hmnht"),
+"Jump": SubResource("Animation_yfep4"),
+"Run": SubResource("Animation_j3jpp"),
+"RunTiltL": SubResource("Animation_x8gdc"),
+"RunTiltR": SubResource("Animation_6xbse"),
+"WallSlide": SubResource("Animation_qlnvf")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vapre"]
@@ -6138,7 +6138,7 @@ surface_material_override/2 = ExtResource("4_mms51")
 unique_name_in_owner = true
 root_node = NodePath("%AnimationTree/../sophia")
 libraries = {
-"": SubResource("AnimationLibrary_mrj8a")
+"": SubResource("AnimationLibrary_73vbp")
 }
 tree_root = SubResource("AnimationNodeBlendTree_qa7x4")
 anim_player = NodePath("../sophia/AnimationPlayer")
