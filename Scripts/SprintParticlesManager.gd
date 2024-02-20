@@ -6,12 +6,11 @@ var sprint_particles : GPUParticles3D
 func _ready():
 	sprint_particles = sprint_particles_packed_scene.instantiate()
 	add_child(sprint_particles)
-	
 	GameManager.sprint.connect(spawn_sprint_particles)
 
 func spawn_sprint_particles(spawn_position : Vector3, speed : float):
 	sprint_particles.global_position = spawn_position
-	if speed > 9.0:
+	if speed > 7.5:
 		print("emitting speed > ", speed)
 		sprint_particles.emitting = true
 	else:

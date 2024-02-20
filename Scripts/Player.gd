@@ -3,9 +3,6 @@ extends CharacterBody3D
 @export_category("Movement")
 @export var auto_sprint : bool = false
 
-@export var movement_particles_spawn_interval : float = 0.1
-var movement_particles_spawn_timer : float = 0.0
-
 @export_group("Speed")
 var speed : float
 @export var walk_speed : float = 3.0
@@ -44,6 +41,12 @@ var look_sensitivity : float
 @export var angular_acceleration : float = 15.0
 
 var aim_input : Vector2 = Vector2()
+
+@export_category("Particles")
+@export_group("Sprint Particles")
+@export var sprint_particles_enabled : bool = false
+#@export var sprint_particles_spawn_interval : float = 0.1
+#var sprint_particles_spawn_timer : float = 0.0
 
 @onready var camera_pivot_horizontal : Node3D = $CameraPivotHorizontal
 @onready var camera_pivot_vertical : Node3D = $CameraPivotHorizontal/CameraPivotVertical
@@ -121,8 +124,9 @@ func _physics_process(delta : float):
 		stomping = false
 		#movement_particles_spawn_timer += delta
 		#if movement_particles_spawn_timer > movement_particles_spawn_interval:
-		var horizontal_velocity : Vector2 = Vector2(velocity.x, velocity.z)
-		GameManager.sprint.emit(global_position + Vector3(0.0, 0.15, 0.0), horizontal_velocity.length())
+		if sprint_particles_enabled:
+			var horizontal_velocity : Vector2 = Vector2(velocity.x, velocity.z)
+			GameManager.sprint.emit(global_position + Vector3(0.0, 0.15, 0.0), horizontal_velocity.length())
 			#movement_particles_spawn_timer = 0.0
 	
 	move_and_slide()

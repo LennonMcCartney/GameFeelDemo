@@ -14,7 +14,6 @@ process_mode = 1
 collision_layer = 2
 script = ExtResource("1_6ghh2")
 auto_sprint = true
-movement_particles_spawn_interval = 0.001
 walk_speed = 6.5
 walk_speed_when_jumping = 5.0
 sprint_speed = 10.0
@@ -27,6 +26,7 @@ stomp_gravity = 30.0
 acceleration = 3.0
 controller_sensitivity = 2.5
 angular_acceleration = 5.0
+sprint_particles_enabled = true
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
