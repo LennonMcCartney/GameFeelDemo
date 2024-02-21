@@ -42,6 +42,9 @@ var look_sensitivity : float
 
 @export var angular_acceleration : float = 15.0
 
+@export var vertical_max_look_angle : float = 1.0
+@export var vertical_min_look_angle : float = 1.0
+
 var aim_input : Vector2 = Vector2()
 
 @export_category("Particles")
@@ -52,7 +55,7 @@ var aim_input : Vector2 = Vector2()
 
 @onready var camera_pivot_horizontal : Node3D = $CameraPivotHorizontal
 @onready var camera_pivot_vertical : Node3D = $CameraPivotHorizontal/CameraPivotVertical
-@onready var camera : Camera3D = $CameraPivotHorizontal/CameraPivotVertical/SpringArm3D/Camera
+@onready var camera : Camera3D = $CameraPivotHorizontal/CameraPivotVertical/SpringArm/Camera
 
 @onready var sophia_skin : SophiaSkin = $SophiaSkin
 
@@ -80,7 +83,7 @@ func _process(delta):
 	
 	camera_pivot_horizontal.rotate_y(-aim_input.x * delta * look_sensitivity)
 	camera_pivot_vertical.rotate_x(-aim_input.y * delta * look_sensitivity)
-	camera_pivot_vertical.rotation.x = clampf(camera_pivot_vertical.rotation.x, deg_to_rad(-70.0), deg_to_rad(10.0))
+	camera_pivot_vertical.rotation.x = clampf(camera_pivot_vertical.rotation.x, deg_to_rad(vertical_min_look_angle), deg_to_rad(vertical_max_look_angle))
 	aim_input = Vector2()
 	
 	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward")
@@ -105,6 +108,8 @@ func _physics_process(delta : float):
 	if get_jump():
 		velocity.y = jump_speed
 		audio_stream_player.play()
+	elif is_on_floor():
+		jump_counter = 0
 	
 	if Input.is_action_just_pressed("Stomp"):
 		velocity.y = -stomp_speed
@@ -136,10 +141,11 @@ func _physics_process(delta : float):
 			#movement_particles_spawn_timer = 0.0
 	
 	move_and_slide()
+	
+	print("jump_counter > ", jump_counter)
 
 func get_gravity() -> float:
 	if stomping:
-		print("stomp_gravity > ", stomp_gravity)
 		return stomp_gravity
 	elif velocity.y < 0.0:
 		return fall_gravity

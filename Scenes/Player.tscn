@@ -15,18 +15,21 @@ process_mode = 1
 collision_layer = 2
 script = ExtResource("1_6ghh2")
 auto_sprint = true
+blink = true
 walk_speed = 6.5
 walk_speed_when_jumping = 5.0
 sprint_speed = 11.0
-sprint_speed_when_jumping = 7.0
+sprint_speed_when_jumping = 7.5
 jump_height = 2.5
 jump_time_to_ascend = 0.35
 jump_time_to_descend = 0.25
 stomp_speed = 0.0
 stomp_gravity = 500.0
 acceleration = 5.0
-controller_sensitivity = 2.5
+controller_sensitivity = 3.0
 angular_acceleration = 10.0
+vertical_max_look_angle = 5.0
+vertical_min_look_angle = -70.0
 sprint_particles_enabled = true
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
@@ -40,10 +43,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 
 [node name="CameraPivotVertical" type="Node3D" parent="CameraPivotHorizontal"]
 
-[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivotHorizontal/CameraPivotVertical"]
-spring_length = 3.0
+[node name="SpringArm" type="SpringArm3D" parent="CameraPivotHorizontal/CameraPivotVertical"]
+spring_length = 2.35
 
-[node name="Camera" type="Camera3D" parent="CameraPivotHorizontal/CameraPivotVertical/SpringArm3D"]
+[node name="Camera" type="Camera3D" parent="CameraPivotHorizontal/CameraPivotVertical/SpringArm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
 [node name="ShadowProjectorManager" type="Node3D" parent="."]
