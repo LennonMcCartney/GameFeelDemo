@@ -1,4 +1,5 @@
 extends Node3D
+class_name SophiaSkin
 
 @onready var animation_tree = %AnimationTree
 @onready var state_machine : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback")

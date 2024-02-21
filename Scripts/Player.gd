@@ -3,6 +3,8 @@ extends CharacterBody3D
 @export_category("Movement")
 @export var auto_sprint : bool = false
 
+@export var blink : bool = false
+
 @export_group("Speed")
 var speed : float
 @export var walk_speed : float = 3.0
@@ -52,7 +54,7 @@ var aim_input : Vector2 = Vector2()
 @onready var camera_pivot_vertical : Node3D = $CameraPivotHorizontal/CameraPivotVertical
 @onready var camera : Camera3D = $CameraPivotHorizontal/CameraPivotVertical/SpringArm3D/Camera
 
-@onready var sophia_skin : Node3D = $SophiaSkin
+@onready var sophia_skin : SophiaSkin = $SophiaSkin
 
 @onready var jump_particle_ray_cast : RayCast3D = $JumpParticleRayCast
 
@@ -61,6 +63,7 @@ var aim_input : Vector2 = Vector2()
 var direction : Vector3
 
 func _ready():
+	sophia_skin.blink = blink
 	sophia_skin.idle()
 
 func _input(event : InputEvent):
