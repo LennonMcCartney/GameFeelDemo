@@ -141,8 +141,6 @@ func _physics_process(delta : float):
 			#movement_particles_spawn_timer = 0.0
 	
 	move_and_slide()
-	
-	print("jump_counter > ", jump_counter)
 
 func get_gravity() -> float:
 	if stomping:
