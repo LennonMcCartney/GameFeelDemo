@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxb3gc5wk7mqb"]
+[gd_scene load_steps=9 format=3 uid="uid://cxb3gc5wk7mqb"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_6ghh2"]
 [ext_resource type="Script" path="res://Scripts/ShadowProjector.gd" id="2_htr7a"]
 [ext_resource type="Texture2D" uid="uid://6e7woru0fgqs" path="res://Textures/DropShadow.png" id="2_jeg5y"]
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://models/sophia/sophia_skin.tscn" id="2_v4a5x"]
-[ext_resource type="AudioStream" uid="uid://fbkk18nhwe4y" path="res://Audio/Jump.mp3" id="5_48co5"]
+[ext_resource type="AudioStream" uid="uid://dcgyd5qqc151o" path="res://Audio/Jump.mp3" id="5_48co5"]
+[ext_resource type="AudioStream" uid="uid://fbkk18nhwe4y" path="res://Audio/DoubleJump.mp3" id="6_ccmc4"]
+[ext_resource type="AudioStream" uid="uid://dk5mu2juvbk4j" path="res://Audio/Footsteps.mp3" id="7_hkhvb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f65h8"]
 radius = 0.35
@@ -79,5 +81,15 @@ cull_mask = 1048573
 [node name="JumpParticleRayCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioPlayers" type="Node3D" parent="."]
+
+[node name="JumpAudioPlayer" type="AudioStreamPlayer3D" parent="AudioPlayers"]
 stream = ExtResource("5_48co5")
+volume_db = -12.0
+
+[node name="DoubleJumpAudioPlayer" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+stream = ExtResource("6_ccmc4")
+
+[node name="FootstepsAudioPlayer" type="AudioStreamPlayer3D" parent="AudioPlayers"]
+stream = ExtResource("7_hkhvb")
+pitch_scale = 1.65

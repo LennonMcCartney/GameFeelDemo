@@ -50,8 +50,6 @@ var aim_input : Vector2 = Vector2()
 @export_category("Particles")
 @export_group("Sprint Particles")
 @export var sprint_particles_enabled : bool = false
-#@export var sprint_particles_spawn_interval : float = 0.1
-#var sprint_particles_spawn_timer : float = 0.0
 
 @onready var camera_pivot_horizontal : Node3D = $CameraPivotHorizontal
 @onready var camera_pivot_vertical : Node3D = $CameraPivotHorizontal/CameraPivotVertical
@@ -61,7 +59,9 @@ var aim_input : Vector2 = Vector2()
 
 @onready var jump_particle_ray_cast : RayCast3D = $JumpParticleRayCast
 
-@onready var audio_stream_player : AudioStreamPlayer3D = $AudioStreamPlayer
+@onready var jump_audio_player : AudioStreamPlayer3D = $AudioPlayers/JumpAudioPlayer
+@onready var double_jump_audio_player : AudioStreamPlayer3D = $AudioPlayers/DoubleJumpAudioPlayer
+@onready var footsteps_audio_player : AudioStreamPlayer3D = $AudioPlayers/FootstepsAudioPlayer
 
 var direction : Vector3
 
@@ -86,7 +86,7 @@ func _process(delta):
 	camera_pivot_vertical.rotation.x = clampf(camera_pivot_vertical.rotation.x, deg_to_rad(vertical_min_look_angle), deg_to_rad(vertical_max_look_angle))
 	aim_input = Vector2()
 	
-	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBackward")
+	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBack")
 	direction = (camera_pivot_horizontal.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		sophia_skin.global_rotation.y = lerp_angle(sophia_skin.global_rotation.y, atan2(-direction.x, -direction.z), angular_acceleration * delta)
@@ -107,7 +107,6 @@ func _physics_process(delta : float):
 	
 	if get_jump():
 		velocity.y = jump_speed
-		audio_stream_player.play()
 	elif is_on_floor():
 		jump_counter = 0
 	
@@ -118,13 +117,18 @@ func _physics_process(delta : float):
 	if direction:
 		velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
 		velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
-		sophia_skin.move()
+		if is_on_floor():
+			if !footsteps_audio_player.playing:
+				footsteps_audio_player.play()
+			sophia_skin.move()
 	else:
 		velocity.x = lerp(velocity.x, 0.0, deceleration * delta)
 		velocity.z = lerp(velocity.z, 0.0, deceleration * delta)
+		footsteps_audio_player.stop()
 		sophia_skin.idle()
 	
 	if not is_on_floor():
+		footsteps_audio_player.stop()
 		if stomping:
 			sophia_skin.edge_grab()
 		elif velocity.y < 0.0:
@@ -133,12 +137,9 @@ func _physics_process(delta : float):
 			sophia_skin.jump()
 	else:
 		stomping = false
-		#movement_particles_spawn_timer += delta
-		#if movement_particles_spawn_timer > movement_particles_spawn_interval:
 		if sprint_particles_enabled:
 			var horizontal_velocity : Vector2 = Vector2(velocity.x, velocity.z)
 			GameManager.sprint.emit(global_position + Vector3(0.0, 0.15, 0.0), horizontal_velocity.length())
-			#movement_particles_spawn_timer = 0.0
 	
 	move_and_slide()
 
@@ -159,10 +160,12 @@ func get_jump() -> bool:
 			jump_counter = 1
 			if jump_particle_ray_cast.is_colliding():
 				GameManager.jump.emit(jump_particle_ray_cast.get_collision_point())
+			jump_audio_player.play()
 			return true
 	else:
 		if Input.is_action_just_pressed("Jump"):
 			if jump_counter <= 1:
 				jump_counter += 1
+				double_jump_audio_player.play()
 				return true
 	return false
