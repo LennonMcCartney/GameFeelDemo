@@ -7,10 +7,10 @@ extends CharacterBody3D
 
 @export_group("Speed")
 var speed : float
-@export var walk_speed : float = 3.0
-@export var walk_speed_when_jumping : float = 2.0
-@export var sprint_speed : float = 7.5
-@export var sprint_speed_when_jumping : float = 5.0
+@export var walk_speed : float = 1.0
+@export var walk_speed_when_jumping : float = 1.0
+@export var sprint_speed : float = 1.0
+@export var sprint_speed_when_jumping : float = 1.0
 
 @export_group("Jump")
 @export var jump_height : float = 1.0
@@ -26,8 +26,8 @@ var jump_counter : int = 0
 @onready var double_jump_speed : float
 
 @export_group("Acceleration")
-@export var acceleration : float = 15.0
-@export var deceleration : float = 10.0
+@export var acceleration : float = 1.0
+@export var deceleration : float = 1.0
 
 @export_category("Input")
 @export_group("Look Sensitivity")
