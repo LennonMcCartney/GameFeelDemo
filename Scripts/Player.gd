@@ -23,12 +23,7 @@ var jump_counter : int = 0
 @onready var jump_gravity : float = (2.0 * jump_height) / (jump_time_to_ascend * jump_time_to_ascend)
 @onready var fall_gravity : float = (2.0 * jump_height) / (jump_time_to_descend * jump_time_to_descend)
 
-@onready var double_jump_speed : float 
-
-@export_group("Stomp")
-@export var stomp_speed : float = 1.0
-@export var stomp_gravity : float = 1.0
-var stomping : bool = false
+@onready var double_jump_speed : float
 
 @export_group("Acceleration")
 @export var acceleration : float = 15.0
@@ -67,7 +62,6 @@ var direction : Vector3
 
 func _ready():
 	sophia_skin.blink = blink
-	sophia_skin.idle()
 
 func _input(event : InputEvent):
 	if event is InputEventMouseMotion:
@@ -110,10 +104,6 @@ func _physics_process(delta : float):
 	elif is_on_floor():
 		jump_counter = 0
 	
-	if Input.is_action_just_pressed("Stomp"):
-		velocity.y = -stomp_speed
-		stomping = true
-	
 	if direction:
 		velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
 		velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
@@ -129,24 +119,18 @@ func _physics_process(delta : float):
 	
 	if not is_on_floor():
 		footsteps_audio_player.stop()
-		if stomping:
-			sophia_skin.edge_grab()
-		elif velocity.y < 0.0:
+		if velocity.y < 0.0:
 			sophia_skin.fall()
 		else:
 			sophia_skin.jump()
-	else:
-		stomping = false
-		if sprint_particles_enabled:
+	elif sprint_particles_enabled:
 			var horizontal_velocity : Vector2 = Vector2(velocity.x, velocity.z)
 			GameManager.sprint.emit(global_position + Vector3(0.0, 0.15, 0.0), horizontal_velocity.length())
 	
 	move_and_slide()
 
 func get_gravity() -> float:
-	if stomping:
-		return stomp_gravity
-	elif velocity.y < 0.0:
+	if velocity.y < 0.0:
 		return fall_gravity
 	else:
 		return jump_gravity
