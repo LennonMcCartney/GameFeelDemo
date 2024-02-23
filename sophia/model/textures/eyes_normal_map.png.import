@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjvo8w2ptm7fc"
-path.s3tc="res://.godot/imported/eyes_normal_map.png-a4e459b6dee7247d2bf4aa27464aa80f.s3tc.ctex"
+path.s3tc="res://.godot/imported/eyes_normal_map.png-6e9fb81436f74ede04af4dac0fdc724b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://sophia/model/textures/eyes_normal_map.png"
-dest_files=["res://.godot/imported/eyes_normal_map.png-a4e459b6dee7247d2bf4aa27464aa80f.s3tc.ctex"]
+source_file="res://Sophia/Model/textures/eyes_normal_map.png"
+dest_files=["res://.godot/imported/eyes_normal_map.png-6e9fb81436f74ede04af4dac0fdc724b.s3tc.ctex"]
 
 [params]
 

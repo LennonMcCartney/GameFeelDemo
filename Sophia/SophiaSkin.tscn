@@ -1,8 +1,8 @@
 [gd_scene load_steps=47 format=3 uid="uid://prh35jb6tjtd"]
 
-[ext_resource type="PackedScene" uid="uid://16iu10wxub40" path="res://sophia/model/sophia.glb" id="1_e4pev"]
-[ext_resource type="Script" path="res://sophia/sophia_skin.gd" id="1_obcib"]
-[ext_resource type="Material" uid="uid://dye01l0ct4fby" path="res://sophia/model/materials/eye_mat_override.tres" id="4_mms51"]
+[ext_resource type="PackedScene" uid="uid://16iu10wxub40" path="res://Sophia/Model/sophia.glb" id="1_e4pev"]
+[ext_resource type="Script" path="res://Sophia/SophiaSkin.gd" id="1_obcib"]
+[ext_resource type="Material" uid="uid://dye01l0ct4fby" path="res://Sophia/Model/materials/eye_mat_override.tres" id="4_mms51"]
 
 [sub_resource type="Animation" id="Animation_b6ppj"]
 resource_name = "EdgeGrab"

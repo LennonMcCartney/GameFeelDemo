@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mdhln8lltmyo"
-path="res://.godot/imported/sophia_normal.png-13e309cba226a51a6f5f7e723742f9d1.ctex"
+path="res://.godot/imported/sophia_normal.png-f104957de8929966ce026fa5a79be8f4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,8 +11,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://sophia/model/sophia_normal.png"
-dest_files=["res://.godot/imported/sophia_normal.png-13e309cba226a51a6f5f7e723742f9d1.ctex"]
+source_file="res://Sophia/Model/sophia_normal.png"
+dest_files=["res://.godot/imported/sophia_normal.png-f104957de8929966ce026fa5a79be8f4.ctex"]
 
 [params]
 
