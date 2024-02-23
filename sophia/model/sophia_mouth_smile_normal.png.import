@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6jb7dt4d54ck"
-path="res://.godot/imported/sophia_diffuse.png-d5d337487449f836356255d02c1b7789.ctex"
+uid="uid://c36m8cv33f0yi"
+path="res://.godot/imported/sophia_mouth_smile_normal.png-248c785f504b028922ec9079a3bd96e4.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,8 +11,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://models/sophia/model/sophia_diffuse.png"
-dest_files=["res://.godot/imported/sophia_diffuse.png-d5d337487449f836356255d02c1b7789.ctex"]
+source_file="res://sophia/model/sophia_mouth_smile_normal.png"
+dest_files=["res://.godot/imported/sophia_mouth_smile_normal.png-248c785f504b028922ec9079a3bd96e4.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://sophia/model/sophia_mouth_smile_normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

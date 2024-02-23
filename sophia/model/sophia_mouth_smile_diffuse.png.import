@@ -2,21 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctfbobgg7ts8d"
-path.s3tc="res://.godot/imported/eyes_diffuse_map.png-e9c6ed837fb2dc44efed8b667baae037.s3tc.ctex"
+uid="uid://d3gigd8y5hjg"
+path="res://.godot/imported/sophia_mouth_smile_diffuse.png-b93a3ea7eb537e5179f35cb8a79e6d38.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://models/sophia/model/textures/eyes_diffuse_map.png"
-dest_files=["res://.godot/imported/eyes_diffuse_map.png-e9c6ed837fb2dc44efed8b667baae037.s3tc.ctex"]
+source_file="res://sophia/model/sophia_mouth_smile_diffuse.png"
+dest_files=["res://.godot/imported/sophia_mouth_smile_diffuse.png-b93a3ea7eb537e5179f35cb8a79e6d38.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
