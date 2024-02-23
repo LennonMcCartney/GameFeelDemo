@@ -31,7 +31,7 @@ process_mode = 3
 [node name="Level" parent="." instance=ExtResource("1_eo46j")]
 
 [node name="Player" parent="." instance=ExtResource("2_uo05b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.4782, 0, 0.160981)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5, 0, 0)
 
 [node name="SprintParticles" parent="." instance=ExtResource("3_to14j")]
 

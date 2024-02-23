@@ -27,8 +27,9 @@ height = 0.6
 [node name="SprintParticles" type="GPUParticles3D"]
 layers = 2
 emitting = false
-amount = 120
+amount = 75
 lifetime = 0.5
+one_shot = true
 process_material = SubResource("ParticleProcessMaterial_gjfcw")
 draw_pass_1 = SubResource("SphereMesh_d4q2u")
 script = ExtResource("1_eoxjc")

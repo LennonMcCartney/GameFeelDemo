@@ -4,7 +4,7 @@ signal pause_toggled(is_paused : bool)
 
 signal jump(pos : Vector3)
 
-signal sprint(pos : Vector3, speed : float)
+signal sprint(pos : Vector3)
 
 func _ready():
 	get_tree().paused = true

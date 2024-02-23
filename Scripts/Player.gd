@@ -45,6 +45,7 @@ var aim_input : Vector2 = Vector2()
 @export_category("Particles")
 @export_group("Sprint Particles")
 @export var sprint_particles_enabled : bool = false
+@export var spawn_speed_threshold : float = 1.0
 
 @onready var camera_pivot_horizontal : Node3D = $CameraPivotHorizontal
 @onready var camera_pivot_vertical : Node3D = $CameraPivotHorizontal/CameraPivotVertical
@@ -86,6 +87,7 @@ func _process(delta):
 		sophia_skin.global_rotation.y = lerp_angle(sophia_skin.global_rotation.y, atan2(-direction.x, -direction.z), angular_acceleration * delta)
 
 func _physics_process(delta : float):
+	# Check if sprinting to set apropriate speed
 	if get_sprinting():
 		if not is_on_floor():
 			velocity.y -= get_gravity() * delta
@@ -99,21 +101,29 @@ func _physics_process(delta : float):
 		else:
 			speed = walk_speed
 	
+	# If jump pressed, set vertical velocity to jump speed
 	if get_jump():
 		velocity.y = jump_speed
+	# Else if on floor, reset jump counter to handle double jump
 	elif is_on_floor():
 		jump_counter = 0
 	
+	# If movement direction is not null
 	if direction:
+		# Lerp velocity x and x towards direction by acceleration
 		velocity.x = lerp(velocity.x, direction.x * speed, acceleration * delta)
 		velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
+		# If is on floor play footsteps audio and set animation to move
 		if is_on_floor():
 			if !footsteps_audio_player.playing:
 				footsteps_audio_player.play()
 			sophia_skin.move()
+	# If movement direction is null
 	else:
+		# Lerp velocity x and z towards zero by deceleration
 		velocity.x = lerp(velocity.x, 0.0, deceleration * delta)
 		velocity.z = lerp(velocity.z, 0.0, deceleration * delta)
+		# Stop footsteps audio and set animation to idle
 		footsteps_audio_player.stop()
 		sophia_skin.idle()
 	
@@ -123,10 +133,12 @@ func _physics_process(delta : float):
 			sophia_skin.fall()
 		else:
 			sophia_skin.jump()
+			if sprint_particles_enabled:
+				spawn_sprint_particles()
 	elif sprint_particles_enabled:
-			var horizontal_velocity : Vector2 = Vector2(velocity.x, velocity.z)
-			GameManager.sprint.emit(global_position + Vector3(0.0, 0.15, 0.0), horizontal_velocity.length())
+		spawn_sprint_particles()
 	
+	# Built in function for character movement physics
 	move_and_slide()
 
 func get_gravity() -> float:
@@ -153,3 +165,8 @@ func get_jump() -> bool:
 				double_jump_audio_player.play()
 				return true
 	return false
+
+func spawn_sprint_particles():
+	var horizontal_velocity : Vector2 = Vector2(velocity.x, velocity.z)
+	if horizontal_velocity.length() > spawn_speed_threshold:
+		GameManager.sprint.emit(global_position + Vector3(0.0, 0.15, 0.0))
