@@ -27,6 +27,7 @@ jump_time_to_ascend = 0.35
 jump_time_to_descend = 0.25
 acceleration = 5.0
 deceleration = 10.0
+mouse_sensitivity = 2.0
 controller_sensitivity = 3.0
 angular_acceleration = 10.0
 vertical_max_look_angle = 5.0

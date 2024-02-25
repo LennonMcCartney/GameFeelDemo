@@ -32,8 +32,8 @@ var jump_counter : int = 0
 @export_category("Input")
 @export_group("Look Sensitivity")
 var look_sensitivity : float
-@export var mouse_sensitivity : float = 0.5
-@export var controller_sensitivity : float = 1.5
+@export var mouse_sensitivity : float = 1.0
+@export var controller_sensitivity : float = 1.0
 
 @export var angular_acceleration : float = 15.0
 
@@ -51,18 +51,25 @@ var aim_input : Vector2 = Vector2()
 @onready var camera_pivot_vertical : Node3D = $CameraPivotHorizontal/CameraPivotVertical
 @onready var camera : Camera3D = $CameraPivotHorizontal/CameraPivotVertical/SpringArm/Camera
 
-@onready var sophia_skin : SophiaSkin = $SophiaSkin
+var sophia_skin : SophiaSkin
 
-@onready var jump_particle_ray_cast : RayCast3D = $JumpParticleRayCast
+var jump_particle_ray_cast : RayCast3D
 
-@onready var jump_audio_player : AudioStreamPlayer3D = $AudioPlayers/JumpAudioPlayer
-@onready var double_jump_audio_player : AudioStreamPlayer3D = $AudioPlayers/DoubleJumpAudioPlayer
-@onready var footsteps_audio_player : AudioStreamPlayer3D = $AudioPlayers/FootstepsAudioPlayer
+var jump_audio_player : AudioStreamPlayer3D
+var double_jump_audio_player : AudioStreamPlayer3D
+var footsteps_audio_player : AudioStreamPlayer3D
 
 var direction : Vector3
 
 func _ready():
+	sophia_skin = get_node_or_null("SophiaSkin")
 	sophia_skin.blink = blink
+	
+	jump_particle_ray_cast = get_node_or_null("JumpParticleRayCast")
+	
+	jump_audio_player = get_node_or_null("AudioPlayers/JumpAudioPlayer")
+	double_jump_audio_player = get_node_or_null("AudioPlayers/DoubleJumpAudioPlayer")
+	footsteps_audio_player = get_node_or_null("AudioPlayers/FootstepsAudioPlayer")
 
 func _input(event : InputEvent):
 	if event is InputEventMouseMotion:
@@ -76,8 +83,8 @@ func _process(delta):
 	else:
 		look_sensitivity = mouse_sensitivity
 	
-	camera_pivot_horizontal.rotate_y(-aim_input.x * delta * look_sensitivity)
-	camera_pivot_vertical.rotate_x(-aim_input.y * delta * look_sensitivity)
+	camera_pivot_horizontal.rotate_y(-aim_input.x * 0.001 * look_sensitivity)
+	camera_pivot_vertical.rotate_x(-aim_input.y * 0.001 * look_sensitivity)
 	camera_pivot_vertical.rotation.x = clampf(camera_pivot_vertical.rotation.x, deg_to_rad(vertical_min_look_angle), deg_to_rad(vertical_max_look_angle))
 	aim_input = Vector2()
 	
@@ -124,7 +131,8 @@ func _physics_process(delta : float):
 		velocity.x = lerp(velocity.x, 0.0, deceleration * delta)
 		velocity.z = lerp(velocity.z, 0.0, deceleration * delta)
 		# Stop footsteps audio and set animation to idle
-		footsteps_audio_player.stop()
+		if footsteps_audio_player:
+			footsteps_audio_player.stop()
 		sophia_skin.idle()
 	
 	if not is_on_floor():
@@ -154,15 +162,17 @@ func get_jump() -> bool:
 	if is_on_floor():
 		if Input.is_action_pressed("Jump"):
 			jump_counter = 1
-			if jump_particle_ray_cast.is_colliding():
+			if jump_particle_ray_cast and jump_particle_ray_cast.is_colliding():
 				GameManager.jump.emit(jump_particle_ray_cast.get_collision_point())
-			jump_audio_player.play()
+			if jump_audio_player:
+				jump_audio_player.play()
 			return true
 	else:
 		if Input.is_action_just_pressed("Jump"):
 			if jump_counter <= 1:
 				jump_counter += 1
-				double_jump_audio_player.play()
+				if double_jump_audio_player:
+					double_jump_audio_player.play()
 				return true
 	return false
 
