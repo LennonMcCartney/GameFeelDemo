@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxb3gc5wk7mqb"]
+[gd_scene load_steps=7 format=3 uid="uid://cxb3gc5wk7mqb"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_6ghh2"]
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://models/sophia/sophia_skin.tscn" id="2_gioyb"]
-[ext_resource type="Script" path="res://Scripts/ShadowProjector.gd" id="2_htr7a"]
-[ext_resource type="Texture2D" uid="uid://6e7woru0fgqs" path="res://Textures/DropShadow.png" id="2_jeg5y"]
-[ext_resource type="AudioStream" uid="uid://dcgyd5qqc151o" path="res://Audio/Jump.mp3" id="5_48co5"]
-[ext_resource type="AudioStream" uid="uid://fbkk18nhwe4y" path="res://Audio/DoubleJump.mp3" id="6_ccmc4"]
-[ext_resource type="AudioStream" uid="uid://dk5mu2juvbk4j" path="res://Audio/Footsteps.mp3" id="7_hkhvb"]
+[ext_resource type="PackedScene" uid="uid://c854y3qhrqgwl" path="res://Scenes/ShadowProjectorsManager.tscn" id="3_24l4n"]
+[ext_resource type="PackedScene" uid="uid://rbanlyofs3lu" path="res://Scenes/JumpParticlesRayCast.tscn" id="5_d2f5x"]
+[ext_resource type="PackedScene" uid="uid://bkqvvitp6umh7" path="res://Scenes/AudioPlayers.tscn" id="5_in4bv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f65h8"]
 radius = 0.35
@@ -52,45 +50,8 @@ spring_length = 3.5
 [node name="Camera" type="Camera3D" parent="CameraPivotHorizontal/CameraPivotVertical/SpringArm"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
 
-[node name="ShadowProjectorManager" type="Node3D" parent="."]
-script = ExtResource("2_htr7a")
+[node name="ShadowProjectorsManager" parent="." instance=ExtResource("3_24l4n")]
 
-[node name="ShadowProjectors" type="Node3D" parent="ShadowProjectorManager"]
+[node name="JumpParticlesRayCast" parent="." instance=ExtResource("5_d2f5x")]
 
-[node name="ShadowProjectorLeft" type="RayCast3D" parent="ShadowProjectorManager/ShadowProjectors"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.25, 0)
-target_position = Vector3(0, -15, 0)
-
-[node name="ShadowProjectorRight" type="RayCast3D" parent="ShadowProjectorManager/ShadowProjectors"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.25, 0)
-target_position = Vector3(0, -15, 0)
-
-[node name="ShadowProjectorFront" type="RayCast3D" parent="ShadowProjectorManager/ShadowProjectors"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.3)
-target_position = Vector3(0, -15, 0)
-
-[node name="ShadowProjectorBack" type="RayCast3D" parent="ShadowProjectorManager/ShadowProjectors"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.3)
-target_position = Vector3(0, -15, 0)
-
-[node name="ShadowDecal" type="Decal" parent="ShadowProjectorManager"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
-size = Vector3(2, 5, 2)
-texture_albedo = ExtResource("2_jeg5y")
-cull_mask = 1048573
-
-[node name="JumpParticleRayCast" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="AudioPlayers" type="Node3D" parent="."]
-
-[node name="JumpAudioPlayer" type="AudioStreamPlayer3D" parent="AudioPlayers"]
-stream = ExtResource("5_48co5")
-volume_db = -12.0
-
-[node name="DoubleJumpAudioPlayer" type="AudioStreamPlayer3D" parent="AudioPlayers"]
-stream = ExtResource("6_ccmc4")
-
-[node name="FootstepsAudioPlayer" type="AudioStreamPlayer3D" parent="AudioPlayers"]
-stream = ExtResource("7_hkhvb")
-pitch_scale = 1.65
+[node name="AudioPlayers" parent="." instance=ExtResource("5_in4bv")]

@@ -66,7 +66,7 @@ func _ready():
 	if sophia_skin:
 		sophia_skin.blink = blink
 	
-	jump_particle_ray_cast = get_node_or_null("JumpParticleRayCast")
+	jump_particle_ray_cast = get_node_or_null("JumpParticlesRayCast")
 	
 	jump_audio_player = get_node_or_null("AudioPlayers/JumpAudioPlayer")
 	double_jump_audio_player = get_node_or_null("AudioPlayers/DoubleJumpAudioPlayer")
@@ -124,7 +124,7 @@ func _physics_process(delta : float):
 		velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
 		# If is on floor play footsteps audio and set animation to move
 		if is_on_floor():
-			if !footsteps_audio_player.playing:
+			if footsteps_audio_player and !footsteps_audio_player.playing:
 				footsteps_audio_player.play()
 			if sophia_skin:
 				sophia_skin.move()
@@ -140,7 +140,8 @@ func _physics_process(delta : float):
 			sophia_skin.idle()
 	
 	if not is_on_floor():
-		footsteps_audio_player.stop()
+		if footsteps_audio_player:
+			footsteps_audio_player.stop()
 		if velocity.y < 0.0:
 			if sophia_skin:
 				sophia_skin.fall()

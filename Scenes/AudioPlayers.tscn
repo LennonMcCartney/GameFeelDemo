@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkqvvitp6umh7"]
+
+[ext_resource type="AudioStream" uid="uid://dcgyd5qqc151o" path="res://Audio/Jump.mp3" id="1_df6hx"]
+[ext_resource type="AudioStream" uid="uid://fbkk18nhwe4y" path="res://Audio/DoubleJump.mp3" id="2_lu71d"]
+[ext_resource type="AudioStream" uid="uid://dk5mu2juvbk4j" path="res://Audio/Footsteps.mp3" id="3_bmlfs"]
+
+[node name="AudioPlayers" type="Node3D"]
+
+[node name="JumpAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("1_df6hx")
+volume_db = -12.0
+
+[node name="DoubleJumpAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_lu71d")
+
+[node name="FootstepsAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_bmlfs")
+pitch_scale = 1.65
