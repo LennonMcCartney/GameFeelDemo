@@ -8,7 +8,6 @@
 
 [node name="JumpAudioPlayer" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("1_df6hx")
-volume_db = -12.0
 
 [node name="DoubleJumpAudioPlayer" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_lu71d")

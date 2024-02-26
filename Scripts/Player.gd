@@ -47,14 +47,18 @@ var aim_input : Vector2 = Vector2()
 @export var sprint_particles_enabled : bool = false
 @export var spawn_speed_threshold : float = 1.0
 
+@export_category("Audio")
+@export var audio_enabled : bool = false
+@export var audio_volume : float = 0.0
+
 @onready var camera_pivot_horizontal : Node3D = $CameraPivotHorizontal
 @onready var camera_pivot_vertical : Node3D = $CameraPivotHorizontal/CameraPivotVertical
-@onready var camera : Camera3D = $CameraPivotHorizontal/CameraPivotVertical/SpringArm/Camera
 
 var sophia_skin : Node3D
 
 var jump_particle_ray_cast : RayCast3D
 
+var audio_players : Node3D
 var jump_audio_player : AudioStreamPlayer3D
 var double_jump_audio_player : AudioStreamPlayer3D
 var footsteps_audio_player : AudioStreamPlayer3D
@@ -71,6 +75,18 @@ func _ready():
 	jump_audio_player = get_node_or_null("AudioPlayers/JumpAudioPlayer")
 	double_jump_audio_player = get_node_or_null("AudioPlayers/DoubleJumpAudioPlayer")
 	footsteps_audio_player = get_node_or_null("AudioPlayers/FootstepsAudioPlayer")
+	
+	if audio_enabled:
+		if jump_audio_player:
+			jump_audio_player.volume_db = audio_volume
+		if double_jump_audio_player:
+			double_jump_audio_player.volume_db = audio_volume
+		if footsteps_audio_player:
+			footsteps_audio_player.volume_db = audio_volume
+	else:
+		jump_audio_player.queue_free()
+		double_jump_audio_player.queue_free()
+		footsteps_audio_player.queue_free()
 
 func _input(event : InputEvent):
 	if event is InputEventMouseMotion:
@@ -92,7 +108,7 @@ func _process(delta):
 	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBack")
 	direction = (camera_pivot_horizontal.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		if sophia_skin:
+		if is_instance_valid(sophia_skin):
 			sophia_skin.global_rotation.y = lerp_angle(sophia_skin.global_rotation.y, atan2(-direction.x, -direction.z), angular_acceleration * delta)
 
 func _physics_process(delta : float):
@@ -124,9 +140,9 @@ func _physics_process(delta : float):
 		velocity.z = lerp(velocity.z, direction.z * speed, acceleration * delta)
 		# If is on floor play footsteps audio and set animation to move
 		if is_on_floor():
-			if footsteps_audio_player and !footsteps_audio_player.playing:
+			if is_instance_valid(footsteps_audio_player) and !footsteps_audio_player.playing:
 				footsteps_audio_player.play()
-			if sophia_skin:
+			if is_instance_valid(sophia_skin):
 				sophia_skin.move()
 	# If movement direction is null
 	else:
@@ -134,19 +150,19 @@ func _physics_process(delta : float):
 		velocity.x = lerp(velocity.x, 0.0, deceleration * delta)
 		velocity.z = lerp(velocity.z, 0.0, deceleration * delta)
 		# Stop footsteps audio and set animation to idle
-		if footsteps_audio_player:
+		if is_instance_valid(footsteps_audio_player):
 			footsteps_audio_player.stop()
-		if sophia_skin:
+		if is_instance_valid(sophia_skin):
 			sophia_skin.idle()
 	
 	if not is_on_floor():
-		if footsteps_audio_player:
+		if is_instance_valid(footsteps_audio_player):
 			footsteps_audio_player.stop()
 		if velocity.y < 0.0:
-			if sophia_skin:
+			if is_instance_valid(sophia_skin):
 				sophia_skin.fall()
 		else:
-			if sophia_skin:
+			if is_instance_valid(sophia_skin):
 				sophia_skin.jump()
 			if sprint_particles_enabled:
 				spawn_sprint_particles()
@@ -171,14 +187,14 @@ func get_jump() -> bool:
 			jump_counter = 1
 			if jump_particle_ray_cast and jump_particle_ray_cast.is_colliding():
 				GameManager.jump.emit(jump_particle_ray_cast.get_collision_point())
-			if jump_audio_player:
+			if is_instance_valid(jump_audio_player):
 				jump_audio_player.play()
 			return true
 	else:
 		if Input.is_action_just_pressed("Jump"):
 			if jump_counter <= 1:
 				jump_counter += 1
-				if double_jump_audio_player:
+				if is_instance_valid(double_jump_audio_player):
 					double_jump_audio_player.play()
 				return true
 	return false
