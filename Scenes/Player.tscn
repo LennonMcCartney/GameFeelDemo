@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxb3gc5wk7mqb"]
+[gd_scene load_steps=9 format=3 uid="uid://cxb3gc5wk7mqb"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_6ghh2"]
+[ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://models/sophia/sophia_skin.tscn" id="2_gioyb"]
 [ext_resource type="Script" path="res://Scripts/ShadowProjector.gd" id="2_htr7a"]
 [ext_resource type="Texture2D" uid="uid://6e7woru0fgqs" path="res://Textures/DropShadow.png" id="2_jeg5y"]
 [ext_resource type="AudioStream" uid="uid://dcgyd5qqc151o" path="res://Audio/Jump.mp3" id="5_48co5"]
@@ -37,6 +38,8 @@ spawn_speed_threshold = 8.0
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 shape = SubResource("CapsuleShape3D_f65h8")
+
+[node name="SophiaSkin" parent="." instance=ExtResource("2_gioyb")]
 
 [node name="CameraPivotHorizontal" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
