@@ -77,16 +77,19 @@ func _ready():
 	footsteps_audio_player = get_node_or_null("AudioPlayers/FootstepsAudioPlayer")
 	
 	if audio_enabled:
-		if jump_audio_player:
+		if is_instance_valid(jump_audio_player):
 			jump_audio_player.volume_db = audio_volume
-		if double_jump_audio_player:
+		if is_instance_valid(double_jump_audio_player):
 			double_jump_audio_player.volume_db = audio_volume
-		if footsteps_audio_player:
+		if is_instance_valid(footsteps_audio_player):
 			footsteps_audio_player.volume_db = audio_volume
 	else:
-		jump_audio_player.queue_free()
-		double_jump_audio_player.queue_free()
-		footsteps_audio_player.queue_free()
+		if is_instance_valid(jump_audio_player):
+			jump_audio_player.queue_free()
+		if is_instance_valid(double_jump_audio_player):
+			double_jump_audio_player.queue_free()
+		if is_instance_valid(footsteps_audio_player):
+			footsteps_audio_player.queue_free()
 
 func _input(event : InputEvent):
 	if event is InputEventMouseMotion:
