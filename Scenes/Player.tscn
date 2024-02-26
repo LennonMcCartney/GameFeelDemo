@@ -28,6 +28,8 @@ controller_sensitivity = 3.0
 angular_acceleration = 10.0
 vertical_max_look_angle = 5.0
 vertical_min_look_angle = -70.0
+sprint_particles_enabled = true
+spawn_speed_threshold = 8.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)

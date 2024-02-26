@@ -103,8 +103,6 @@ func _process(delta):
 	camera_pivot_horizontal.rotate_y(-aim_input.x * 0.001 * look_sensitivity)
 	camera_pivot_vertical.rotate_x(-aim_input.y * 0.001 * look_sensitivity)
 	camera_pivot_vertical.rotation.x = clampf(camera_pivot_vertical.rotation.x, deg_to_rad(vertical_min_look_angle), deg_to_rad(vertical_max_look_angle))
-	print(vertical_max_look_angle)
-	print(rad_to_deg(camera_pivot_vertical.rotation.x))
 	aim_input = Vector2()
 	
 	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBack")
