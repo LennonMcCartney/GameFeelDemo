@@ -51,7 +51,7 @@ var aim_input : Vector2 = Vector2()
 @onready var camera_pivot_vertical : Node3D = $CameraPivotHorizontal/CameraPivotVertical
 @onready var camera : Camera3D = $CameraPivotHorizontal/CameraPivotVertical/SpringArm/Camera
 
-var sophia_skin : SophiaSkin
+var sophia_skin : Node3D
 
 var jump_particle_ray_cast : RayCast3D
 
@@ -63,7 +63,8 @@ var direction : Vector3
 
 func _ready():
 	sophia_skin = get_node_or_null("SophiaSkin")
-	sophia_skin.blink = blink
+	if sophia_skin:
+		sophia_skin.blink = blink
 	
 	jump_particle_ray_cast = get_node_or_null("JumpParticleRayCast")
 	
@@ -91,7 +92,8 @@ func _process(delta):
 	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBack")
 	direction = (camera_pivot_horizontal.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		sophia_skin.global_rotation.y = lerp_angle(sophia_skin.global_rotation.y, atan2(-direction.x, -direction.z), angular_acceleration * delta)
+		if sophia_skin:
+			sophia_skin.global_rotation.y = lerp_angle(sophia_skin.global_rotation.y, atan2(-direction.x, -direction.z), angular_acceleration * delta)
 
 func _physics_process(delta : float):
 	# Check if sprinting to set apropriate speed
@@ -124,7 +126,8 @@ func _physics_process(delta : float):
 		if is_on_floor():
 			if !footsteps_audio_player.playing:
 				footsteps_audio_player.play()
-			sophia_skin.move()
+			if sophia_skin:
+				sophia_skin.move()
 	# If movement direction is null
 	else:
 		# Lerp velocity x and z towards zero by deceleration
@@ -133,14 +136,17 @@ func _physics_process(delta : float):
 		# Stop footsteps audio and set animation to idle
 		if footsteps_audio_player:
 			footsteps_audio_player.stop()
-		sophia_skin.idle()
+		if sophia_skin:
+			sophia_skin.idle()
 	
 	if not is_on_floor():
 		footsteps_audio_player.stop()
 		if velocity.y < 0.0:
-			sophia_skin.fall()
+			if sophia_skin:
+				sophia_skin.fall()
 		else:
-			sophia_skin.jump()
+			if sophia_skin:
+				sophia_skin.jump()
 			if sprint_particles_enabled:
 				spawn_sprint_particles()
 	elif sprint_particles_enabled:
