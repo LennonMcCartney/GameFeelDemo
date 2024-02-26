@@ -37,7 +37,7 @@ var look_sensitivity : float
 
 @export var angular_acceleration : float = 15.0
 
-@export var verticall_max_look_angle : float = 0.0
+@export var vertical_max_look_angle : float = 0.0
 @export var vertical_min_look_angle : float = 0.0
 
 var aim_input : Vector2 = Vector2()
@@ -102,8 +102,8 @@ func _process(delta):
 	
 	camera_pivot_horizontal.rotate_y(-aim_input.x * 0.001 * look_sensitivity)
 	camera_pivot_vertical.rotate_x(-aim_input.y * 0.001 * look_sensitivity)
-	camera_pivot_vertical.rotation.x = clampf(camera_pivot_vertical.rotation.x, deg_to_rad(vertical_min_look_angle), deg_to_rad(verticall_max_look_angle))
-	print(verticall_max_look_angle)
+	camera_pivot_vertical.rotation.x = clampf(camera_pivot_vertical.rotation.x, deg_to_rad(vertical_min_look_angle), deg_to_rad(vertical_max_look_angle))
+	print(vertical_max_look_angle)
 	print(rad_to_deg(camera_pivot_vertical.rotation.x))
 	aim_input = Vector2()
 	

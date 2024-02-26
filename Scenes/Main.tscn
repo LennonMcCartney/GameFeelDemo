@@ -32,7 +32,6 @@ process_mode = 3
 
 [node name="Player" parent="." instance=ExtResource("2_uo05b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5, 0, 0)
-vertical_max_look_angle = 0.0
 
 [node name="SprintParticles" parent="." instance=ExtResource("3_to14j")]
 
