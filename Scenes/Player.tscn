@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxb3gc5wk7mqb"]
+[gd_scene load_steps=6 format=3 uid="uid://cxb3gc5wk7mqb"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_6ghh2"]
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://models/sophia/sophia_skin.tscn" id="2_gioyb"]
 [ext_resource type="PackedScene" uid="uid://c854y3qhrqgwl" path="res://Scenes/ShadowProjectorsManager.tscn" id="3_24l4n"]
-[ext_resource type="PackedScene" uid="uid://rbanlyofs3lu" path="res://Scenes/JumpParticlesRayCast.tscn" id="5_d2f5x"]
 [ext_resource type="PackedScene" uid="uid://bkqvvitp6umh7" path="res://Scenes/AudioPlayers.tscn" id="5_in4bv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f65h8"]
@@ -12,11 +11,11 @@ height = 1.4
 
 [node name="Player" type="CharacterBody3D"]
 process_mode = 1
+collision_layer = 2
 script = ExtResource("1_6ghh2")
 auto_sprint = true
 blink = true
 walk_speed = 6.5
-walk_speed_when_jumping = 5.0
 sprint_speed = 11.0
 sprint_speed_when_jumping = 7.5
 jump_height = 2.5
@@ -27,12 +26,8 @@ deceleration = 10.0
 mouse_sensitivity = 2.0
 controller_sensitivity = 3.0
 angular_acceleration = 10.0
-vertical_max_look_angle = 70.0
+verticall_max_look_angle = 5.0
 vertical_min_look_angle = -70.0
-sprint_particles_enabled = true
-spawn_speed_threshold = 8.0
-audio_enabled = true
-audio_volume = -20.0
 
 [node name="CollisionShape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
@@ -52,7 +47,5 @@ spring_length = 3.5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.5)
 
 [node name="ShadowProjectorsManager" parent="." instance=ExtResource("3_24l4n")]
-
-[node name="JumpParticlesRayCast" parent="." instance=ExtResource("5_d2f5x")]
 
 [node name="AudioPlayers" parent="." instance=ExtResource("5_in4bv")]

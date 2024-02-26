@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://boamkotjhu5si" path="res://Scenes/Level.tscn" id="1_eo46j"]
 [ext_resource type="PackedScene" uid="uid://cxb3gc5wk7mqb" path="res://Scenes/Player.tscn" id="2_uo05b"]
 [ext_resource type="PackedScene" uid="uid://d3xslbkl1p37d" path="res://Scenes/UI.tscn" id="3_oxe1j"]
-[ext_resource type="PackedScene" uid="uid://cfl6s3t4xd3e0" path="res://Scenes/Particles/SprintParticles.tscn" id="3_to14j"]
+[ext_resource type="PackedScene" uid="uid://cfl6s3t4xd3e0" path="res://Scenes/SprintParticles.tscn" id="3_to14j"]
 [ext_resource type="Script" path="res://Scripts/FpsLabel.gd" id="6_5hj3n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cgqnp"]
@@ -32,6 +32,7 @@ process_mode = 3
 
 [node name="Player" parent="." instance=ExtResource("2_uo05b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5, 0, 0)
+vertical_max_look_angle = 0.0
 
 [node name="SprintParticles" parent="." instance=ExtResource("3_to14j")]
 

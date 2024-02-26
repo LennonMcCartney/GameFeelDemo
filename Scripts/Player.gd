@@ -7,15 +7,15 @@ extends CharacterBody3D
 
 @export_group("Speed")
 var speed : float
-@export var walk_speed : float = 1.0
-@export var walk_speed_when_jumping : float = 1.0
-@export var sprint_speed : float = 1.0
-@export var sprint_speed_when_jumping : float = 1.0
+@export var walk_speed : float = 5.0
+@export var walk_speed_when_jumping : float = 5.0
+@export var sprint_speed : float = 10.0
+@export var sprint_speed_when_jumping : float = 10.0
 
 @export_group("Jump")
 @export var jump_height : float = 1.0
-@export var jump_time_to_ascend : float = 1.0
-@export var jump_time_to_descend : float = 1.0
+@export var jump_time_to_ascend : float = 0.1
+@export var jump_time_to_descend : float = 0.1
 
 var jump_counter : int = 0
 
@@ -26,8 +26,8 @@ var jump_counter : int = 0
 @onready var double_jump_speed : float
 
 @export_group("Acceleration")
-@export var acceleration : float = 1.0
-@export var deceleration : float = 1.0
+@export var acceleration : float = 30.0
+@export var deceleration : float = 30.0
 
 @export_category("Input")
 @export_group("Look Sensitivity")
@@ -37,8 +37,8 @@ var look_sensitivity : float
 
 @export var angular_acceleration : float = 15.0
 
-@export var vertical_max_look_angle : float = 1.0
-@export var vertical_min_look_angle : float = 1.0
+@export var verticall_max_look_angle : float = 0.0
+@export var vertical_min_look_angle : float = 0.0
 
 var aim_input : Vector2 = Vector2()
 
@@ -102,7 +102,9 @@ func _process(delta):
 	
 	camera_pivot_horizontal.rotate_y(-aim_input.x * 0.001 * look_sensitivity)
 	camera_pivot_vertical.rotate_x(-aim_input.y * 0.001 * look_sensitivity)
-	camera_pivot_vertical.rotation.x = clampf(camera_pivot_vertical.rotation.x, deg_to_rad(vertical_min_look_angle), deg_to_rad(vertical_max_look_angle))
+	camera_pivot_vertical.rotation.x = clampf(camera_pivot_vertical.rotation.x, deg_to_rad(vertical_min_look_angle), deg_to_rad(verticall_max_look_angle))
+	print(verticall_max_look_angle)
+	print(rad_to_deg(camera_pivot_vertical.rotation.x))
 	aim_input = Vector2()
 	
 	var input_dir = Input.get_vector("MoveLeft", "MoveRight", "MoveForward", "MoveBack")
